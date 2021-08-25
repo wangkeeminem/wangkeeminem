@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript">
+    console.log(Object.prototype)
+    function Fun(){
+        this.test1=function(){console.log('test1')}
+        }
+    Fun.prototype.test2=function(){console.log('test2')}
+    var fun=new Fun
+    fun.test1()
+    fun.test2()
+    console.log(fun.toString())
+    console.log(fun)
+    var Person=new Function()
+    var abb=new Person
+    var Monkey=new Function()
+    console.log(Person.prototype);
+    console.log(abb.__proto__===Person.prototype);
+    var obj=new Object()
+    console.log(obj.__proto__===Function.prototype);
+    console.log(Object.prototype instanceof Object);
+    console.log(Object.__proto__===Function.prototype);
+   
+   </script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type='text/javascript'>
+    var list=[]
+   
+    var fun=function(n){
+    for(i=3;i<n+1;i++){
+     list[1]=1
+     list[2]=1
+     list[i]=list[i-2]+list[i-1]  
+    //  console.log(i); 
+
+    }return list[n]}
+
+    console.log(fun(42));
+
+    window.onload=function(){
+    var input1=document.getElementById('input1')
+    var btn=document.getElementsByTagName('button')[0]
+    btn.onclick=function(){
+    var number=input1.value
+    var worker=new Worker('another.js')
+    worker.postMessage(number)
+    console.log("主线程发出请求数据");
+    worker.onmessage=function(event){console.log("主线程收到返回值")
+    alert(event.data)}
+    }
+
+
+    }
+    </script>
+</head>
+<body>
+    <input id='input1' type="text">
+    <button>确定</button>
+</body>
+</html>

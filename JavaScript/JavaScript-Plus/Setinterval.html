@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript">
+     window.onload=function(){
+     var btn=document.getElementsByTagName('button')[0]
+     btn.onclick=function(){
+     var time1=Date.now()
+     setTimeout(function(){console.log(Date.now()-time1)},200)
+     
+     }
+     
+     for(i=0;i<4000000000;i++){}
+     }
+    </script>
+</head>
+<body>
+    <button>定时器调用时间开始计算</button>
+</body>
+</html>

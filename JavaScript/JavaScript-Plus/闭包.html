@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript">
+     window.onload=function(){
+     var btn=document.getElementsByTagName('button')
+     console.log(btn[0])
+    //  console.log(btn.length)
+    var t=0
+     for(var i=0;i<3;i++){
+         console.log(++t)
+     ;(function(index){
+        
+         
+         var fun1=function(){
+
+            console.log(index)
+        }
+        btn[index].onclick=fun1
+
+     }
+
+     )(i)}
+
+
+    
+     }
+
+    </script>
+</head>
+<body>
+    <button>点我1</button>
+    <button>点我2</button>
+    <button>点我3</button>
+</body>
+</html>
