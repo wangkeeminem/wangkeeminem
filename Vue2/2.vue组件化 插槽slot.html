@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2.vue组件化 插槽slot</title>
+  <style>
+    div[class^=class] {
+        font-weight: bold;
+        font-size: 25px;
+        
+    }
+
+    table,
+    tr,
+    th,
+    td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+    em{color: red;
+     font-weight: bold;}
+</style>
+</head>
+<body>
+  <div class="class52-53">52.组件化的实现与使用步骤<a href="./class52-54--56组件化.html">代码</a></div>
+  <ul>
+    <li>网页页面每一部分组件化，对应某一功能，最终集成到整个项目中</li>
+    <li>vue组件思想：①提供一种抽象，可以开发出独立可复用的小组件来构造我们的应用<br>②任何应用可被抽象为一个组件树</li>
+    <li>注册组件基本步骤：创建组件构造器Vue.extend({template:写组件html字符串语句)👉注册组件Vue.component('标签名',组件变量)👉<em>在Vue实例</em> 的作用范围内使用组件</li>
+    <li>`可以当作作需要字符串换行的引号使用</li>
+  </ul>
+  <div class="class54-55">54.全局组件与局部组件 父组件和子组件的区别</div>
+  <ul>
+    <li>全局组件：通过构造器、注册的方式得到的就是全局组件，意味着可以在多个vue实例中使用</li>
+    <li>局部组件：将注册组件换成在vue实例下注册：components：{cpn：cpncontruct}，只能在这个实例中使用</li>
+    <li>父组件子组件：两者分开构建，在父组件创建中声明子组件,<em> 注意大括号</em>：components：{子组件cpn：子组件cpncontruct}注册子组件，父组件再独立进行注册，</li>
+    <li>Vue是根组件，它也可以进行定义template</li>
+    <li>父组件中注册的子组件无法直接在外部使用，如要使用可以在需要使用的vue组件中继续再次注册</li>
+  </ul>
+  <div class="class56">56.组件语法糖</div>
+  <ul>
+    <li>Vue.extend不写:在注册Vue.component下组件变量写为{template：}</li>
+    <li>在Vue实例中也可以通过这种办法替代cpncontruct</li>
+  </ul>
+  <div class="class57">57.组件模板抽离的写法</div>
+  <ul>
+    <li>（不常用）法1.使用script标签 type="text/x-template" 加个id，在组件构建是用#id引用</li>
+    <li><em> 法2.使用template标签 加id用于绑定</em></li>
+  </ul>
+  <div class="class58">58.为什么组件data必须是函数</div>
+  <ul>
+    <li>1.组件模板中若需要{{}}引用，是<em>不可以通过访问vue实例中</em> 的data实现的</li>
+    <li>2.组件内部有他自己的实例数据集，data(){return {s:sss}}：（但不是个对象类型，是一个函数，返回的是数据对象），供组件模板使用,使用函数可以使各组件件无相互影响（确保每次函数执行（单独占一个空间）返回的不是同一个对象）</li>
+    <li>3.使用{}相当新建了一个新的组件数据对象，使之与响应创建的组件可以一一对应</li>
+    <li>4.若想不同组件使用相同的数据集，可以在外部创建一个obj作为data函数的返回值进行创建</li>
+    <li>5.组件中可以写自己的method，实现组件的动作</li>
+  </ul>
+<div class="class59">59.父传子组件通信--props</div>
+<ul>
+  <li>1.请求网络服务器：各小组件中比如列表数据的请求👉一般在最外层的组件中进行网络请求发送👉请求值返回值productlist[]再发送到子组件的data中</li>
+  <li>2.涉及到上层传递下层数据：1.父组件通过props向子组件传递数据（properties所有物）2.子组件通过事件向父组件发送消息</li>
+  <li>3.父组件向子组件传递数据：在子组件中定义props：[变量名1,变量名2]、在响应子组件的元素中动态绑定‘：子props属性名=父data属性名’，两组件要形成父子关系</li>
+  <li>4.props其他写法：props：{变量名：类型（如Array、Number、Boolean、String、Object、Date、Funtion、Symbol符号）}可以对传入类型进行一个类型限制</li>
+  <li>5.指定默认值及类型写法：props：{变量名：{type：String,default:'aaaaaa'}}</li>
+  <li>6.继承变量对象下可以指定required：true表示该值是必须要传递的，否则报错</li>
+  <li><em> 7.default值,默认值是在没有发生传递时使用的值，2.5.17之后指定Array后，默认值如果指定为[],将报错，需要改为default(){return []}  对于数组或者对象 需要指定return</em></li>
+  <li>8.多类型指定可以type可以跟数组[String,Number]</li>
+  <li>9.validator可以指定一个验证函数进行数据验证</li>
+  <li>10.可以使用构造函数构造一个类，指定为该类</li>
+</ul>
+</body>
+<div class="class60">60.父子组件通信 props驼峰标识</div>
+<ul>
+  <li>1.由于目前v-bind不支持驼峰，因此在prop继承变量命名绑定时需要将驼峰处用‘-小写子母’来转化</li>
+  <li>2.v-for是支持驼峰的</li> 
+</ul>
+<div class="class61">61.子传父（通过自定义事件）</div>
+<ul>
+  <li>使用情况：子组件发生事件传递给父组件发生的事件以及子对象</li>
+  <li>在子组件中定义事件响应函数，在template中定义响应事件函数绑定,同时可传入响应item参数</li>
+  <li>给父组件传递：在子组件的响应函数中使用this.$emit('itemclick'（事件名称），item)表示发射事件，item表示在父响应事件函数的传入对象</li>
+  <li>在父组件实例中通过v-on：itemclick或@itemclick绑定父组件的响应函数</li>
+  <li>注意v-on的驼峰也是不支持的，尽量不要用</li>
+  <li>总结：子组件绑定事件响应并发射事件名，父组件将此发射事件绑定函数</li>
+  <li>大总结：父向子：props 子传父：子通过$emit发送事件名, 父绑定该事件名为实例中绑定响应 </li>
+</ul>
+<div class="class62">62.真实开发中的父子绑定</div>
+<ul>
+  <li>真实项目中一般使用脚手架构建项目，代码一般写在src文件夹中。</li>
+  <li>.vue文件中一般包含三个部分：template、js代码、样式代码</li>
+  <li>在home.vue中进行导入和注册，组件就可以用了</li>
+  <li>脚手架中就可以写驼峰命名了，会将组件对象渲染为rander函数</li>
+  <li>执行：npm install <br>
+    npm run serve</li>
+</ul>
+<div class="class63">63.知识回顾</div>
+略。
+<div class="class64">64.父子组件通信--结合双向绑定案例</div>
+<ul>
+  <li>v-bind与v-model都进行改变子元素值，v-model起作用，但是会导致混乱</li>
+  <li>官方建议使用data的函数进行绑定v-model，而不使用prop中的数据</li>
+  <li>实现了子组件通过input事件向父组件传递数据，同时利用method函数改变自己的数据</li>
+  <li>注意props父传子方式并不会第一事件将更新传递到子组件实例</li>
+  <li><a href="./class64父子传递定双向绑定.html">组件监听</a> ：在子组件对象中可以定义watch属性 写法：watch：{监听属性名（newValue，oldValue）{函数体内可以定义组件内相关数据的变化}}</li>
+</ul>
+<div class="class67">67.父访问子 refs 子访问父</div>
+<ul>
+  <li>1.父组件访问子组件：$children或$refs reference,在父组件中this.children[XX]可以的到子组件</li>
+  <li><em> 1.父组件访问子组件:在子组件实例上加属性ref="aaa",然后父组件引用中使用this.$refs.aaa</em>来访问它</li>
+  <li>2.子组件访问父组件：this.$parent </li>
+  <li>3.访问根组件：直接访问到vue实例this.$root</li>
+</ul>
+<br>
+<div class="class69">69.插槽 slot 具名插槽的使用</div>
+<ul>
+  <li>slot：每个组件实例显示的内容要求不一样，要求其组件具备扩展性</li>
+  <li>将需要更改的元素加插槽 方式：template中加上slot标签,然后再需要加插槽的位置即《cpn》《/cpn》中间写如插入组件</li>
+  <li>如果需要默认的插入内容，可在slot标签中间加入默认内容，如实例中没有定义那么就会使用默认的标签</li>
+  <li>具名插槽：通过给slot加name，并且再插入实例中表明其slot=“取得名字”</li>
+</ul>
+<div class="class71--72">71.编译作用域与作用域插槽的使用</div>
+<ul>
+  <li>1.在组件实例A中引用变量属性，查找属性名时不会管它在哪个组件，而是查找其A模板。这就是作用域。</li>
+  <li>2.组件的变量作用域应该在template中</li>
+  <li>3.作用域插槽:实现父组件提供替换插槽的标签。但内容由子组件来进行提供，即父作用域中引入子的数据</li>
+  <li>实现手段：slot中加入 ：data=“接受data变量”，绑定此数据到插槽，然后在要插入的子组件实例中插入《template slot-scope=“slot”》《p 使用slot.data的for取值》</li>
+  <li>数组转字符串使用XX连接 数组.join（XXX）</li>
+</ul>
+</html>

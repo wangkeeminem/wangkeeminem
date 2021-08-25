@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3.前端模块化开发</title>
+  <style>
+    div[class^=class] {
+      font-weight: bold;
+      font-size: 25px;
+    }
+
+    table,
+    tr,
+    th,
+    td {
+      border: 1px solid black;
+      border-collapse: collapse;
+    }
+
+    em {
+      color: red;
+      font-weight: bold;
+    }
+    img{height: 400px;
+    width: 400px;}
+  </style>
+</head>
+
+<body>
+  <div class="class73">73.前端代码复杂带来的问题</div>
+  <ul>
+    <li>ajax异步请求的出现前导致前后端分离，需要前端可以进行数据处理，需要外联js文件</li>
+    <li>多个js文件导致全局变量重名冲突的问题</li>
+    <li>受js文件顺序引入依赖性太强</li>
+    <li>使用闭包解决这种问题，不会有命名冲突问题，但由于函数作用域的问题，无法实现代码互用。可以使用闭包模块化进行处理即function立即调用返回一个obj作为模块，将obj中内容暴露出去</li>
+  </ul>
+  <div class="class74">74.前端模块化雏形和CommonJS</div>
+  <ul>
+    <li>闭包手段为模块化出行，为早期自己实现的手段</li>
+    <li>常见模块化规范：CommonJS、AMD、CMD、ES6的模块化</li>
+    <li>CommonJS：Node使用的很多</li>
+    <li>CommonJS的导出 在一定环境下：在子js中导出：module.exports={flag:flag,sum:sum}大概语法就是这么写的 导入：然后再导入的js中：var aaa=require("文件名")或var
+      (flag,sum)=require("文件名")</li>
+  </ul>
+  <div class="class75">75.ES6模块化的导入和导出</div>
+  <ul>
+    <li>在引入js文件时type=“module”，使每个js都有其单独的作用域，无变量命名冲突，但也会导致共用性的严重损失,可以通过导入导出解决</li>
+    <li>导出1公用变量（以对象的方式导出）：export{变量名，函数名}</li>
+    <li>导入1：import {变量} from ”js文件名“ <em> 需要导出和导入的文件js都需要type=”module“</em></li>
+    <li>导出2：定义时 export var num1=1000、export function XXX(){}</li>
+    <li>导入2：与1一样</li>
+    <li>导出3：ES6中定义类class Person{},类的导出（或构造函数）：export class Person{} 然后通过import {Person}，就可以直接通过new Person来创建新类实例了</li>
+    <li>ES6中构造器：class Person{constructor(name,age){this.name=XXX;this.age=XXX}}</li>
+    <li>默认匿名导出4：export default 变量名（js文件中default只能有一个） 导入4：不加{}，直接import XXX（自定义）from ”文件名“，可以匿名导出导入</li>
+    <li>导出备注：统一全部导出 import * as aaa from”“ 然后用aaa.变量名取用</li>
+  </ul>
+  <div class="class"><em>***JS文件引入的小结***</em> </div>
+  <ul>
+    <li>1.采用非模块化的js文件引入时，按导入顺序决定变量是否可互相引用，本质上来说是一种代码拼接，因此变量定义会互相影响</li>
+    <li>2.闭包是采取非模块化文件时才有效</li>
+    <li>3.采用模块化js文件引入，文件名需要加js后缀，且js模块间可以相互引用，使用import export进行</li>
+    <li>4.模块化中也不免有js模块之间变量名一样导致冲突的情况，这是可以采用*引入的方式或者才导出时以对象的方式进行导出，这样在主语句中访问时以属性名进行访问</li>
+  </ul>
+  <div class="class76">76.webpack的介绍和安装</div>
+  <ul>
+    <li>1.webpack为前端模块化打包工具，会将项目中所需要的所有类别文件进行打包处理，它依赖于node环境（版本 node -v），node环境的包管理npm工具（node package manage） </li>
+    <li>打包工具：grunt、gulp、webpack、rollup</li>
+    <li>对于前端模块化的不同方案（CommonJS、AMD、CMD、ES6），webpack会进行底层支持，打包时将其转换为浏览器可识别的代码（对此gulp不支持）</li>
+    <li>2.webpack会帮助处理模块间的依赖关系，图片、css等文件都可以被当作模块使用</li>
+    <li>与gulp的区别：gulp配置任务流，自动化进行任务管理，适用于工程模块非常简单没有模块化概念、只需简单合并压缩的功能<br>
+    webpack更强调模块化</li>
+    <li>全局安装：在所有终端都可以执行。本地安装：根据项目需求不可能全用全局的webpack，因此一般实际项目中都会在本地部署适配webpack</li>
+  </ul>
+<div class="class77">77.webpack基本使用过程</div>
+<ul>
+  <li>webpack的起步：scr文件夹中放入源码（开发的东西），dist（distribution发布）文件夹中放入源码打包的东西，最终将dist发布到服务器就好了<br>
+  </li>
+  <li>src中源文件：main.js或index.js,在src文件同级建立index.html。这种开发需要js文件通过模块化代码去写</li>
+  <li>模块化代码优势：不需要在html中进行script导入</li>
+  <li>commonjs写法：导出：module.exports={变量或函数名，变量或函数名}  可在另一js文件中导入变量或函数：const{add，mul}=require（‘js文件’）👉commonjs规范浏览器不认，但webpack打包可以帮助解决这个问题，最终生成一个可供使用的js文件</li>
+  <li>使用webpack：在src上级文件下使用webpack（终端切换到文件夹 输入webpack ./src/main.js .dist/bundle.js）,他会自动处理各种模块件的依赖，只需将main.js作为最终入口就好了</li>
+  <li>index.html中引用bundle.js进行测试就好了</li>
+</ul>
+<div class="class78">78.webpack.config.js的配置和package.json的配置</div>
+<ul>
+  <li>1.webpack.config.js用于配置打包文件的出入口：一。根目录新建此名称js文件，二。指定模型引入的入口、出口（需要使用绝对路径，通过请求path获取），出口文件名 三。终端运行npm初始化：npm init，定义package name 定义entry point暂时定位index.js👉ok👉重新通过npm安装：npm install👉可以通过“webpack”直接运行打包工作</li>
+  <img src="./configjs配置.png" alt=""><img src="./configjs配置2.png" alt="">
+  <li>2.package.json的配置：<br>
+    一般开发时不使用webpack来进行打包（webpack webpack），而是将其映射为一个npm run命令，如npm run built，在package.json中的script使用“built”：“webpack”来获取映射
+    
+    devDependencies开发时依赖</li>
+  <li>3.webpack的项目运行环境：开发中使用的webpack一般不会使用全局安装版本的webpack，而是与以接手项目的webpack版本有关，因此需要在本地安装webpack：<br>
+  终端运行：npm install webpack@3.6.0 --save-dev（也可以用-D），表示开发时运行。成功安装后package 文件中会增加语句： "devDependencies": {
+    "webpack": "^3.6.0"
+  }表示开发时运行webpack
+  
+  </li>
+  <img src="./packagejson配置.png" alt="">
+  <li><em> 所有终端执行的webpack都是在全局下运行的，而npm run built运行会优先选择本地的进行运行！另一种本地运行的方式：./node_modules/.bin/webpack</em>
+  </li>
+</ul>
+<div class="class79">79.webpack中使用CSS文件的配置</div>
+<ul>
+  <li>webpack自身无法转化图片、ES代码或者TS代码的转化、scss、less转成css，.jsx、.vue转成.js,需要给它拓展对应loader</li>
+  <li>一、loader配置:在js文件中引入css文件形成依赖：在main js中写入require('./css/normal.css')</li>
+  <li>二、安装css loader(目前与3.6版本相匹配的css为2.0.2)，安装style loader(目前与3.6版本相匹配的css为1.2.1)</li>
+  <li>三、配置webpack.config.js 加入module: {
+    rules: [
+      {
+        test: /\.css$/i,
+        use: ["style-loader","css-loader"],
+        // cssloader只负责加载 不负责解析
+      },
+    ],
+  },  run build</li>
+  <img src="./css style的配置.png" alt="">
+</ul>
+<div class="class80">80.webpack less的配置</div>
+<ul>
+  <li>less文件的关联：在main.js中：require('./css/special.less')</li>
+  <li>3.6.0webpack lessloader版本：4.1.0 less版本：3.9.0</li>
+ <img src="./less的配置.png" alt="">
+</ul>
+<div class="class81">81.webpack图片文件的配置</div>
+<ul>
+  <li>webpack在加载css是也会将涉及图片模块化，需要对应loader进行处理</li>
+  <li>需要安装url-loader,相对应版本是1.1.2</li>
+  <li>limit会限制图片的大小，如果小于limit （默认8kb）的话，正常加载，并且转为base64数据的格式进行加载，<br> 对于大于limit的图片，会报错需要安装file-loader,相应版本3.0.1</li>
+  <img src="./url limit内文件配置.png" alt="">
+  <li>base64数据不需要文件进行存储，因此不需要关联，但是作为file文件时也需要打包进行发送，此时在dist文件中已经传入了一份相同大小的图片名为哈希值,注意fileloader这里可以不需要配置js文件</li>
+  <img src="./file引入的配置.png" alt="">
+  <li>由于dist文件中已经传入的哈希值文件名的文件，实际上浏览器在寻找该文件时会以与index.html同文件夹目录下寻找，因此在index.html不在dist文件里的状况下，<em><a id="output设置" href="#取消output"> 需要指定output里的publicPath："dist/"，</a>该方法会与html的路径进行一个拼接，指定新的公共空间！</em></li>
+  <li>真实开发中：所有图片放入同一文件夹：img/保持原图片名 可能导致重名的问题，需要名字与哈希值拼接作为图片命名 可以在url-loader的配置代码中option下加入name：'img/[name].[hash:8].[ext]'</li>
+  <img src="./file引入图片文件命名的配置.png" alt="">
+</ul>
+<div class="class82">82.将ES6打包成ES5语法 babel工具</div>
+<ul>
+  <li>安装babel loader和babel core（ES2015表示ES6）：npm install --save-dev babel-loader@7 babel-core babel-preset-es2015</li>
+  <li>与webpack3.6版本对应的babelloader版本为7,另外注意preset-es2015表示转换ES6语言</li>
+</ul>
+<div class="class83">83.使用VUE的配置</div>
+<ul>
+  <li>因nodemodule代码中有定义export default Vue，可以直接在js文件中加载vue：import Vue from "vue"</li>
+  <li>安装vue：npm install vue --save ，注意vue是运行时依赖的后续用模块化的思想使用vue,使用2.5.21版本</li>
+  <li>安装好之后，在写vue代码前使用：import Vue from "vue"👉提示template compiler无效，因为使用了 runtime-only的版本👇</li>
+  <li>vue在构建最终发布版本时，有两个版本： runtime-only（运行版本，无编译功能！！运行时不可以有任何template，会将vue实例作为timeplate，也就是说这个版本不包含对template编译的代码）<br> 
+    runtime-compiler》代码中有用于编译template的功能。解决办法👇</li>
+  <li>webpack配置中加入  resolve: {
+    alias: {"vue$":"vue/dist/vue.esm.js"
+    }
+    }, 表示在js中引入”vue“时，从vue/dist/vue.esm.js中引用，而配置前默认使用的是vue/dist/vue.runtime.js</li>
+    <img src="./vue的webpack配置.png" alt="">
+    <li><em> 注意最终main.js引入一定要在定义的vue实例下面</em></li>
+</ul>
+<div class="class84">84.创建VUE时template和el的关系</div>
+<ul>
+  <li>SPA:simple page application单页面复应用--》vue-router（前端路由）单页面可通过路由跳转页面</li>
+  <li>为保证index.html不经常进行内部修改：一般vue开发中vue的实例部分只会保留《div id="app"》《/div》部分，而中间部分通过在js的new Vue对象中的template:`《div》《/dic》`内部书写
+  <li>👆完成后，vue实例id=app的标签内容(即vue对象中el所指)会被template替换！</li>
+  <img src="./将实例通过template放入Vue对象中.png" alt="">
+</ul>
+<div class="class85">85.Vue终级优化方案</div>
+<ul>
+  <li>也可通过const App={template：`XXX`,data(){},}的方式创建组件，在Vue中组件引用，并且template变为：《App/》,这样就达到了《App》将el所只用标签取代的目的</li>
+  <li>👆独立组件对象创建好了,但是还需要将其通过模块化外部文件导入👇</li>
+  <li>将App组件大括号内的对象移入文件夹vue下面的app.js,通过export default导出，在main.js中import导入</li>
+  <img src="./通过导入的方式导入vue组件.png" alt="">
+  <li><em>终级方案：通过.Vue文件导入,在Vue文件夹下新建APP.vue文件（按《》可快速生成模板），将template中写入标签分布、在script中写入</em></li>
+  <img src="./vue组件通过。vue文件写入并引入.png" alt="">
+  <li>👆报错0没有vue类型文件的loader，需要webpack安装：npm install vue-loader vue-template-compiler --save-dev <br>
+    loader版本：15.4.2 compiler版本：2.5.21，这里版本要匹配compiler与前面的vue 👇
+  </li>
+  <li>配置loader：在module下的rules写：{
+    test:/\.vue$/i,
+    // use:[
+      // {
+        loader:["vue-loader",]
+      // }
+    // ]
+},
+<br>此时loader出现版本不匹配，可指定package.json中"vue-loader": "^13.0.0",然后运行npm install 即从低版本重新匹配👇</li>
+<img src="./vue loader和compiler的配置.png" alt="">
+<li>后续其他组件中做为APP组件的后代组件，在同目录下进行创建，然后将其在APP.vue中进行引入，将组件注册到APP中，并且把其书写到到APP的template中（《Cpn/》）</li>
+
+</ul>
+
+<div class="class86">86.webpack横幅Plugin的使用（webpack的起步 copy 3）</div>
+<ul>
+  <li>1.什么是plugin：对现有功能的扩展</li>
+  <li>2.loader：加载器转换器 plugin：扩展器</li>
+  <li>plugin安装方法：通过npm安装 通过webpack.config.js进行配置</li>
+  <li>插件1：给打包文件加上许可证协议👉webpack自带插件 BannerPlugin</li>
+  <img src="./版权声明plugin的配置.png" alt="">
+</ul>
+<div class="class87">87.webpack HtmlWebpackplugin</div>
+<ul>
+  <li>解决index.Html需要放在dist(最终发布的文件)路径中的问题👉HtmlWebpackplugin 可跟根据自动生成html文件，且自动插入bundlejs文件到script标签到body中</li>
+  <li>安装：npm install html-webpack-plugin --save-dev</li>
+  <li>配置：const HtmlWebpackPlugin = require("html-webpack-plugin") 获取插件----在plugin[]中加入new HtmlWebpackPlugin({template:"index.html"}),<a href="#output设置" id="取消output"> output中publicPath属性删除</a></li>
+  <li>index.html 自动生成在dist文件夹：script引用通过HtmlWebpackPlugin插件和取消output路径解决。。。。《div id="app"》《/div》通过{template:"index.html"}会寻找外目录内index.html的这个文件作为模板</li>
+  <li>当前使用3.2.0 出现引入html-webpack-plugin目录出现问题，暂时使用nodemodel目录指定来解决，还没找到原因</li>
+  <img src="./indexhtml生成在src目录下插件配置.png" alt="">
+</ul>
+<div class="class88">88.Uglifyjs Webpackplugin 丑化代码压缩插件</div>
+<ul>
+  <li>1.npm install uglifyjs-webpack-plugin@1.1.1 --save-dev</li>
+  <li>配置文件：const UglifyjsWebpackPlugin = require("uglifyjs-webpack-plugin") <br>plugin: new UglifyjsWebpackPlugin() </li>
+  <li></li>
+  <li></li>
+</ul>
+<div class="class88">88.搭建本地服务器webpack-dev-server</div>
+<ul>
+  <li>1.会对某一文件路径下根据编译变动自动生成内容暂存在内存中，浏览器测试直接从内存中读取，速度很快。只有在run build才会放到dist中</li>
+  <li>2.npm install --save-dev webpack-dev-server@2.9.3 ，配置中加入devServer:{
+    contentBase: "./dist",
+    // 根文件夹
+    inline: true,
+    // 页面试试刷新
+    port:8088
+  }</li>
+  <li>3.json中映射dev：“webpack-dev-server” 或“webpack-dev-server --open（不需要打开端口直接运行）”   运行：npm run dev 打开端口---更改代码webpack: Compiling...</li>
+  <li>ctrl+C终止
+  </li>
+  <img src="./webpack的server的配置.png" alt="">
+  <li>uglify这种在未发布前是不需要使用的，而server在发布后是不需要进行配置的，因此需要将配置文件按照编译、开发进行进行一个抽离👇</li>
+</ul>
+<div class="class89">89.配置文件的抽离</div>
+<ul>
+  <li>1.新建build文件夹里base.config.js里放置开发全程都需要的配置信息:剔除server、uglify配置</li>
+  <li>2.build下新建prod.config.js放只在生产时：丑化   dev.config.js放只在开发时使用的配置：本地服务器</li>
+  <li>3.npm install webpack-merge@4.1.5 --save-dev安装合并插件</li>
+  <li>4.在prod的文件中，新建const baseConfig = require("./base.config")，并用module.exports = webpackMerge(baseConfig,{
+    plugins:[
+      new UglifyjsWebpackPlugin()
+    ],
+  
+  })将base与prod进行一个合并,同理将base与dev合并，json文件进行命令指定：<br> "build": "webpack --config ./build/prod.config.js",
+  <br> "dev": "webpack-dev-server --open --config ./build/dev.config.js"<br>在baseconfig中重新指定path：path:path.resolve(__dirname,"../dist"),<br></li>
+  <li>👇</li>
+  <img src="./配置的开发上线抽离.png" style="width: 1920px;height:300px ;" alt="">
+</ul>
+</body>
+
+</html>

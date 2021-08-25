@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>4.Vue Cli脚手架</title>
+  <style>
+    div[class^=class] {
+      font-weight: bold;
+      font-size: 25px;
+    }
+
+    table,
+    tr,
+    th,
+    td {
+      border: 1px solid black;
+      border-collapse: collapse;
+    }
+
+    em {
+      color: red;
+      font-weight: bold;
+    }
+
+    img {
+      height: 400px;
+      width: 400px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="class91">91.脚手架的介绍与安装</div>
+  <ul>
+    <li>1.开发大型项目，webpack的配置真是让人头大！vue cli可以帮我们自动生成！</li>
+    <li>2.Command line interface--命令行界面，中文花名脚手架</li>
+    <li>3.vue cli是 vue.js的脚手架</vue>
+    </li>
+    <li>使用脚手架前提：Node 8.9以上，webpack</li>
+    <li>脚手架的安装 当前版本4.5.13：全局安装 npm install -g @vue/cli,这里安装的是最新的版本吧，若要用脚手架2初始化项目：npm install @vue/cli-init -g</li>
+    <li>使用脚手架2初始化项目：在根目录下：vue init webpack my-project</li>
+    <li>使用脚手架3、4初始化项目：vue create my-project</li>
+
+  </ul>
+  <div class="class92">92-93.CL2初始化项目及CL2的目录结构分析</div>
+  <ul><li> 初始化项目：在根目录下vue init webpack my-project 选择选择project名 描述 作者 是否runtime（暂选下面的）或all、是否路由（否）、ES LINT限制ES编译时不规范就会报错，
+    暂时不用、单元测试（不常用n）、e2e测试（端到端测试，有类似selium的测试，选n）、用什么管理（选npm）</li>
+     <li>CL2的目录结构分析：package.json中：<br>
+       "build": "node build/build.js"以node的方式运行build.js <br>
+       "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",(progress打印进程相关) </li>
+       <img src="./脚手架中配置的合并.png" alt="">
+     <li>build中配置相关文件，config中定义的都是变量、主机host等</li>
+     <li>node module包见json cl2 2.5.2的vue</li>
+     <li>src 开发文件夹</li>
+     <li>static静态的资源：在这个文件夹中的资源最终会原封不动传到dist文件中，gitkeep不管文件夹是否为空，都会上传至服务器</li>
+     <li>babelrc：ES转化：brower：市场份额1% 最后2版本，非ie《=8  stage-2 阶段暂时不要了解 plugin：依赖的插件</li>  
+     <li>editorconfig：编码习惯：insert_finall_newline=true 保存最后处空一行 trim——trailing——空格=true</li>
+     <li>eslintignore：忽略某些不正规代码</li>
+     <li>gitignore 不需要上传的  eslintignore测试相关 postcssrc：css转化相关 index.html app div</li>
+     <li>package-lock.json：进行版本映射：：：安装版本 ^0.28.0 表示最后一位是可变的  ~4.20.5表示最后两位是可变的 第一位是不变的</li>
+     <li>readme.md说明</li>
+  
+  </ul>
+  <div class="class94">95.安装错误与ESlint规范</div>
+  <ul><li>c-users-admin-appdata-roaming删除解决安装失败</li> 
+  <li>ESlint关闭：config中index.js 将useESlint改成false</li></ul>
+  <div class="class95">96.理解runtime compiler和runtime only</div>
+  <ul>
+    <li>runtime compiler:app的组件注册后再使用模板  runtime-only：render:使用通过函数function(h){}(App)，<em>一般都选 runtime-only</em>  因为👇</li>
+    <li>Vue组件处理：模板templ→解析→抽象语法树→编译→rander→虚拟dom→UI界面，原因1：rander函数的作用就是直接将APP vue对象直接转化成rander函数，因此他的性能更高，他的代码量更少。原因2：一般使用中，传入导入vue并生成对象时，已经通过vuecomplier
+      将其render函数化，最终并不需要在main.js中使用组件注册和使用模板（可以直接将vue导出的对象作为render的h的参数传入）
+    </li>
+    <li>creatElement： render：function (creatElement){return creatElement('h2')}会将h2标签替换掉#app；creatElement('h2'，{class："box"},['hello'])可以h2指定class和内容;
+      还可以在creatElement中套入creatElement。creatElement用法二：将一个组件对象传入creatElement，例如一个cpn 或者VUE导出的组件APP  .vue文件中的template vue-compiler帮助转换成了render函数，在引用App时没有模板信息，已经是render函数了，er</div>
+    </li>
+  </ul>
+  <div class="class95">97.VueCli3创建项目和目录结构</div>
+  <ul>
+    <li>VueCli3基于webpack4打造，设计原则：0配置，隐藏配置文件（build config）</li>
+    <li>可视化配置页面、static静态资源移除，puclic取代之（index放在了public文件里）</li>
+    <li>脚手架三：vue create testvuecli3  PWA(progress web app)：可以实现推送通知，大缓存功能</li>
+    <li>> In dedicated config files（一般选这个）
+      In package.json选择配置文件放哪儿</li>
+    <li>c-users-admin-appdata-roaming自己保存的配置在vuerc文件中C:\Users\86158\.vuerc</li>
+    <li>Vue.config.productionTip提示信息是否展示</li>
+    <li>挂接命令(mount)  </li>
+  </ul>
+  <div class="class98">98.CLI3脚手架配置查找</div>
+  <ul>
+    <li>找配置：一。终端启动vue ui   package.</li>
+    <li>找配置二：node文件夹中</li>
+    <li>找配置三：根目录创建vue.config.js 写入配置：module.exports={}，可以作为添加配置文件 后续进行修改</li>
+  </ul>
+  <div class="class99">99.箭头函数与this指向</div>
+  <ul>
+    <li>定义函数方式：const aaa=function(){}/const obj={bbb(){}}------》字面量定义函数</li>
+    <li>箭头函数无参数 const ccc = （）=> {}</li>
+    <li>箭头函数有参数 const ccc = （num1，num2） => {}</li>
+    <li>箭头函数有一个参数 小括号可以省略掉</li>
+    <li>箭头函数中的代码数量问题 {如果只有一行代码可以省略return和{}}即=>num1+num2----------解读render的h</li>
+    <li>箭头函数中this的使用：将一个函数作为另一个函数参数传入时用的比较多，在字面量定义的函数中obj中使用传统function进行定义函数，那么this指向为window，若是以箭头函数的方式定义函数内引用函数参数，那么this指向obj <br>
+    <em> this向外层作用域中一层层查找、找到有this定义的那一层的this</em></li>
+  </ul>
+  <div class="class100">♥♥♥♥100.什么是路由及其中的映射关系</div>
+  <ul>
+    <li>路由：网路工程术语，信息从源地址传输到目的地址的活动</li>
+    <li>路由器：将内网IP与设备ID进行映射 猫：外网Ip</li>
+    <li>后端渲染：jsp：java server page，在服务器进行渲染，后台形成网页，传过来的只有html css。</li>
+    <li>第一阶段：后端路由：服务器负责 url与html形成的映射关系，生成的网页传到客户端</li>
+    <li>后端路由劣势：前端没事干，后端全干，语言混乱</li>
+    <li>第二阶段：前后端分离：后端只负责提供数据、不负责任何阶段的内容，前端内容展示（静态资源服务器中拿三巨头（根据url有好几套），运行js的ajax向api接口请求、大量数据接受，js代码创建），</li>
+    <li>前后端分离优势：责任清晰、多平台移动端同API服务请求</li>
+    <li>最新阶段：前端路由阶段：SPA页面：单页面复应用：整个网页只有一个html页面。只有一个index.html+css+js(全部资源)，通过代码的抽离使页面呈现多态化。</li>
+    <li>前端路由：在前后端分离下进行前端路由，前端管理url与js资源的映射  ----------脚手架的router</li>
+  </ul>
+  <div class="class101">101.url的hash和HTML的history</div>
+  <ul>
+    <li>改变url而不需用页面刷新的手段：url的hash值改变和html5的history实现</li>
+    <li>1.改变url hash：控制器中输入location.hash = 'aaa'  实现页面不刷新更改地址</li>
+    <li>2.html的history： history.pushState({},'','home')====>(data对象，title，url)  使用的是使url进行入栈出栈的方式，可以通过back forward继续后退，也可通过go进行跳栈</li>
+    <li>3.html的history：history.replaceState({},'','home'),直接替换，无back </li>
+  </ul>
+  <div class="class102">102.vue router安装和配置 --save方式 运行使用</div>
+  <ul>
+    <li>router创建项目时选择的情况：src文件中会有router文件，配置自动会有，自己手动搭建方式👇</li>
+    <img src="./cli2 router的配置.png" alt="">
+  </ul>
+  <div class="class103">104.路由映射配置与呈现 105.history的方式</div>
+  <ul>
+    <li>使用vue-router步骤：1.创建路由组件 在组件文件夹建立诸如”About.vue“"Home.vue"组件！
+       <br> 2.配置路由映射：在src文件中会有router文件indexjs文件中导入并创建映射路由关系<br>
+      3.使用路由进行调用：将控制url切换的标签写到App.vue中：模板中加入router-link  并指定to="/home""/about"，加入router-view，使之作为占位标签用于显示home about建立的组件</li>
+    <li>router-link时router已经注册过的组件，在任意位置都可以用（应该时通过组件和url配置生成的，通过to path进行指定组件）</li>
+    <img src="./cli2 router组件path映射的配置和引用路由.png" alt="">
+    <li>细节问题：1.网页首页默认显示，且网址应该为home，可以新配置路由映射：path为空字符串，redirect："/home"重定向至path"/home"<br>
+    2.#/home这种都是哈希值更改路径的方式（为路由默认的模式），可以使用history方式进行更改：在创建路由对象中加入：mode:"history"   ---const router = new VueRouter({
+      routes,
+      mode:"history"
+    })</li>
+  </ul>
+  <div class="class106">106.router link的属性 107通过代码跳转路由</div>
+  <div>router link的属性：tag="button" "li" ; 禁掉返回前进：replace ;被点击的class会触发加一个属性router-link-active,可以通过标签中active-class="XXX"指定名字或在路由新建中linkActiveClass："XXX"</div>
+  <div>通过代码跳转路由：router建立只有，所有组件中都加入了$router的这个属性，可以组件中使用this.$router.push(''./home'),也可以使用replace，注意连续点击会报错</div>
+  <div class="class108">108.vue router动态路由的使用</div>
+  <ul>
+    <li>动态路由：/user/wangke这种如何进行配置：在路由配置中：path: "/user/:userId",
+      component:User, 然后在App中以：to属性 绑定app组件的数据方式加上去，:to="/user/+userId"</li>
+    <li>若要在user中拿到url的后缀，可通过{{$route.params.userId}}或通过属性中定义return this.$route.params.userId拿到，</li>
+    <li>route代表的是路由中活跃的url-组件对，而router的是整个大的路由（new定义的），他们在每个参与路由映射上的组件上都由定义，可以通过this获取。</li>
+  </ul>
+  <div class="class109">109. 打包文件的解析 110.路由的懒加载</div>
+  <ul>
+    <li>打包文件：js文件：app：当前应用程序的所有代码；vendor：第三方代码比如vue/vue-router/axios/bs；mainfest:为打包的代码做运行时的底层支撑（common js？ES6导入导出？其他复杂处理）</li>
+    <li>丑化插件路径：build-webpack.prod.conf.js</li>
+    <li>路由的懒加载：开发中js的代码会变得越来越臃肿，影响加载速度，希望将一个路由打包一个js文件（首页的放一个、购物车放一个等等），用到时（启动路由）再从服务器请求过来</li>
+    <li>效果：js文件访问时才加载：写法：路由分别routes中分别设置：path："/home",component:()=>import('XXX')，打包会多几个js文件 写法二：const Home=()=>import ("../components/Home")，router中再引用Home</li>
+  </ul>
+  <div class="class111">111.路由的嵌套</div>
+  <ul>
+    <li>路由嵌套：像/home/news和/home/message 这种再同一home页面中，将这两个组件也进行分离开渲染</li>
+    <li>步骤：1.创建对应子组件，在路由映射中配置子路由，home组件内部使用《router-view》标签</li>
+    <li>在路由映射中配置子路由:children:[
+      {
+        path: "news",
+        component:HomeNews,
+      },
+      {path: "message",
+      component:HomeMessage,}
+    ] 再home的路由下创建children，并且懒加载子组件</li>
+    <li>home组件内部使用《router-view》标签：再home.vue中使用router-link和view，<em>注意router-link中的to都是以”根目录“为基础的后缀，及/home/news要写完整</em></li>
+    <li>如果子自建点击后想在下次访问home时优先显示：使用keep-alive（后续会讲）。固定组件默认显示用redirect就可以了</li>
+  </ul>
+  <div class="class112">112.vue router参数传递</div>
+  <ul>
+    <li>参数传递：页面跳转时传递参数</li>
+    <li>方式1：params类型：配置动态路由（如上）/router/:id，传递方式：path后跟上对应值 ：to与属性拼接形成路径，通过$route.params.abc(获取后缀的值的方法)</li>
+    <li>方法2：query类型(传入整个对象，对于数据比较多的情况)：传统配制路由配置路由： /router  传递方式：对象中使用query的key作为传递方式，router-link如：:to="{<em> path:'/profile'</em>,query:{name:'why',age:18,height:1.88}}"  传递后形成路径：/router?id=123</li>
+    <li>返回网址：name=why&age=18&height=1.88，这部分就是query，/profile就是路径 在子组件中可以通过<em>$route.query.XXX取出参数</em></li>
+     <li>url的组成：协议：主机：端口（port）/路径（path）?查询（query）#片段</li>
+     <li>通过button跳转</li>
+  </ul>
+  <div class="class114">114.router和route</div>
+  <ul>
+    <li>router 表示路由全域都一样的几个方法：push、replace</li>
+    <li>route 拿到的是处于活跃时的路由</li>
+    <li>Vue是所有组件实例原型，在Vue的prototype定义方法，所有组件都可以使用</li>
+    <li>object.defineProperty(obj,"age",18)可以为obj定义属性，install源代码中就是给Vue加了router属性，并且加了两个全局组件router-link和view</li>
+  </ul>
+  <div class="class115">115.全局导航守卫</div>
+  <ul>
+    <li>在页面跳转中进行监听，并进行响应---导航守卫</li>
+    <li>进行标题修改：方法一：利用生命周期响应函数进行修改（生命周期见第10集），mouted表示挂在到整个dom上时，使用它回调document.title="XXX"分别更改标题</li>
+    <li>方法二：再路由设置文件中，监听跳转并修改标题：监听内部监听路由跳转函数：调用next router.beforeEach((to,from,next)=>{next()}),next函数必须写上否则影响内部跳转，详见next代码 ，标题定义：to是route类型的，可以为to加meta对象并加title属性，在函数中定义document.title=metat.meta.title (meta元素可提供有关页面的元信息)</li>
+    <li>路由嵌套的影响：to中match列表表示当前嵌套的路由组件，第一个表示被挂靠主路由即home，通过document.title=metat.matched.meta.title 可以解决此问题</li>
+  </ul>
+  <div class="class116">导航守卫的补充</div>
+   <ul>
+     <li>meta:元数据  全局前置守卫beforeEach：再跳转之前进行更改 afterEach后置钩子：参数只有to，from，也可以用于标题更改</li>
+     <li>其他守卫：路由独享的守卫：再具体的路由下进行配置beforeEnter: (to, from, next)箭头函数<br> 
+      组件内的守卫：在组件srcipt下下进行配置：beforeRouteEnter
+      beforeRouteUpdate (2.2 新增)
+      beforeRouteLeave</li>
+   </ul>
+   <div class="class117">117.保留组件的状态keep-alive</div>
+   <ul>
+     <li>keep-alive是vue内部的一个组件（《keep-alive》），保持内部组件的生存(在保持组件的父级模板中指定该组件实例)，可以通过actived函数 deactive函数来控制路由激活与非激活状态瞬间的动作，</li>
+     <li>实现组件状态保留：1.将默认（比如默认跳转）及切换属性（自定义path:默认/home/news）写到组件中，keep-alive可以保持其状态与属性相连更新，<br>
+      2.使用actived函数将点击默认路由指向用this.router.push跳转页面this.path <br>
+      3, 利用组件导航守卫（beforeRouteLeave(to, from, next) 将离开时的route的path赋值给自定义path属性）也可以实现此种功能</li>
+     <li>以上利用组件的属性作为地址的切换的方式，可弥补路由指定的笨重性</li>
+     <li>在keep alive下组件的actived和deactived函数才有效，它实现了组件不会被频繁的创建和销毁</li>
+     <li>keepalive属性：include="导出的组件name，（不要加空格！） exclude="导出的组件name"   包含或解除对某某的alive</li>
+   </ul>
+   <div class="class119">119.基本结构的搭建</div>
+   <div>主导思想：数据层面主要部署在app层，而结构层面通过组件和slot进行构建，Vue要求template下必然要放一个div，这个div在终端是会显示的（之前理解错了？），这个div也是区别层级的标识</div>
+   <img src="./tobbar练习-1.png" alt="">
+</body>
+</html>

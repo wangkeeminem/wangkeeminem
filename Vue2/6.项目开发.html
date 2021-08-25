@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>项目开发</title>
+  <style>
+    div[class^=class] {
+      font-weight: bold;
+      font-size: 25px;
+    }
+
+    table,
+    tr,
+    th,
+    td {
+      border: 1px solid black;
+      border-collapse: collapse;
+    }
+
+    em {
+      color: red;
+      font-weight: bold;
+    }
+
+    img {
+      height: 400px;
+      width: 400px;
+    }
+  </style>
+</head>
+<body>
+  <div class="class148">148.项目创建与github</div>
+  <ul>
+    <li>创建：cli3：vue create 项目名</li>
+    <li>github使用：目录下使用①git remove add origin url ②git push -u origin master 
+    </li>
+  </ul>
+  <div class="class149">149.划分目录结构</div>
+  <ul>
+    <li>1.划分目录结构：src：assets(css img).....compnoents(放公共组件(common(可能别的项目也会用的公共),content(与当前项目业务相关的公共)))........views(大的视图组件(home,category)) <br>
+    router......store(vuex).....network(网络相关的).......common(公共的js文件,公共的常量抽取const.js、工具类 utils.js、mixin.js混入(一个混入对象可以包含任意组件选项。当组件使用混入对象时，所有混入对象的选项将被“混合”进入该组件本身的选项。))</li>
+  </ul>
+  <div class="class150">150.CSS文件的引入</div>
+  <ul>
+    <li>引入初始化 normalize.css 重置样式，使网页表现在所有浏览器中一样</li>
+    <li>新建base.css,引用normalize文件 用@important引用</li>
+    <li>在App.vue的style中进行引用base.css</li>
+  </ul>
+  <div class="class151">151.vue 配置文件和他的编辑</div>
+  <ul>
+    <li>新建一个vue.config.js文件，进行别名配置</li>
+    <li>根目录下editconfig文本排布的配置一定要加上！（从项目小组获取，小组做到统一风格）</li>
+  </ul>
+  <div class="class151">152.项目开发tabbar引入和项目模板划分 153.icon的修改</div>
+  <ul>
+    <li>通过tabbar与路由组件的连接，划分出几大模块（几个view组块、大页面）</li>
+    <li>网页的icon是放在index.html下的  '《link rel="icon" href="《%= BASE_URL %>myicon.ico"></li>
+  </ul>
+  <div class="class153">154.导航栏的封装使用</div>
+  <ul>
+    <li>导航栏根据各个页面不同的布局，看主要分为几大块进行布局，预留对应几个slot，注意：slot内的class等不生效，需要通过外裹div进行类型绑定（绑定样式）</li>
+    <li>导航栏可以放入项目组件公共文件夹，用来作为其他项目使用模板</li>
+    <li>为home组件单独设置class并绑定css样式</li>
+    <li>css中直接设置line height而没有内容是不生效的</li>
+  </ul>
+  <div class="class155">155.请求首页的多个数据</div>
+  <ul>
+    <li>request.js网络请求专门建立一个文件，针对每一个view建立一个文件夹，用于定义她所包含的请求函数（同一根目录下不同路径可定义多个），供view组件直接引入该函数</li>
+    <li>注意json的分层（被坑N次了，一般在request中可以对response拦截器进行一层剥离，抽取他的data作为输出）</li>
+    <li>在组件内选择data内定义变量进行request的接收，接受表达式写在请求函数的then函数中（请求函数返回的总是个promise类型，他的then中的res才是想得到的数据）</li>
+    <li></li>
+  </ul>
+  <div class="class156">156.轮播图的展示</div>
+  <ul>
+    <li>左划右划要区分，并根据条件处理边界问题</li>
+  <li>匀速滚动中使用条件判断并调用回调函数执行到达终点返回至首张图片、切换图片暂停函数</li>
+  <li>对按钮的处理需要解决冒泡问题</li>
+  <li>所有动作封装放在swiper内进行，最终形成一个封装体文件swiper</li>
+  <li>设置一个图片移动距离的数据属性，用来监控图片位置</li>
+  <li>home下建立一个home子元素的文件夹，用于放置轮播组件、推荐栏等子组件</li>
+</ul>
+<div class="class157">157.推荐信息的展示</div>
+<ul>
+  <li>遇到在渲染前未加载ok报error的情况，可以通过判断加载变量是否为空作为条件进行加载《img :src='imagelist&&imagelist[0].image923' alt="" slot="swiperitem"》</li>
+  <li>关于要实现不跟随父元素移动的目的，可以脱离父子关系形成兄弟关系，但在最外围增加一层div以他为基准进行绝对定位，因为其都在组件内，同样可以共享组件的很多属性</li>
+</ul>
+<div class="class158--164">158-164.TabControl的封装</div>
+<ul>
+  <li>点击事件响应：利用点击传入一个item值，将其返回出去，通过这个item与v-for所有标签的item做对比，为true的便可以视作是点击事件触发的元素</li>
+  <li>position：sticky 粘滞定位，可以实现在可视窗口的动态定位，当绑定该属性的元素运动到指定位置时，自动变为fixed属性,它要求父元素不能开启overflow</li>
+</ul>
+<div class="class165">165--166.better-scroll的安装和使用</div>
+<ul>
+  <li>安装：npm install better-scroll --save</li>
+  <li> 使用办法：.list是指定滚动窗口，需要指定一个高度，且他的内部只能有一个固定的组件作为滚动物体（内部再嵌套）<br> mounted() {
+    this.scroll=new BScroll('.list',{})
+  },
+</li>
+  <li>监听滚动信息：位置.默认下是不可以实时监听，若需要实时监听：{}要加入：probeType(默认是0)：1是不侦测的，2：滚动侦测，但手指离开停止。 3：只要滚动就侦测</li>
+  <li> better-scroll 2X 以上需要加载observe-dom，并且设为true
+    import ObserveDom from '@better-scroll/observe-dom'
+    BScroll.use(ObserveDom)
+    mounted() {
+    this.scroll=new BScroll('.list',{probeType:3,pullUpLoad:true,observeDOM:true,click:true})//只要滚动就侦测
+    pullUpLoad:true,(position)=>{console.log(position);})可以获取滑动的position的X、y值
+  }, click:true控制类似div元素是否可以被点击</li>
+  <li></li>
+  <div class="class168--169">168.better-scroll的使用</div>
+  <ul>
+    <li>设置pullUpLoad:true，<br> 
+      pullUpLoad:true；this.scroll.on('scroll',(position)=>{
+        捕捉拖动动作
+        // console.log(position);
+      if (position.y《-927){this.$emit('backtop','initial')}
+      else{this.$emit('backtop','hidden')}
+      })
+      
+    this.scroll.on('pullingUp',()=>{
+    //发送网络请求请求页面数据 表示拖到底部
+    //等数据请求完，展示出来后
+    setTimeout(()=>{
+    this.scroll.finishPullUp()},2000) //关闭上次上拉事件  
+    })
+  },</li>
+    <li>父子传递较为不好传递的情况，可以通过父组件中直接refs指定的方式指定到子组件内部的属性和方法</li>
+    <li>在Vue组件的非常规标签内，指定click方法是无效的，但可以通过加click.native来实现自定义组件的动作绑定</li>
+    <li>视图宽度、高度 vh vw 100vh表示可视高度</li>
+    <li>css中通过：calc（100%-15px）可以实现父组件的属性-16px的计算</li>
+  </ul>
+</ul>
+<div class="class170">170.better-scoll的监听封装</div>
+<ul>
+  <li>bs的监听probeType如果一直设置为2或3，作为公共组件使用可能会影响使用性能。</li>
+  <li>可以将其在组件内部设置继承属性props：probeType，default为0（关闭实时监听），再在使用时对其进行参数传递（pullUpLoad:true设置为false才能关闭probeType）</li>
+</ul>
+<div class="class171">171.完成上拉加载</div>
+<ul>
+  <li>bs调用refresh()可进行上拉后刷新→更新可滑动区域高度，消除滑动中卡顿bug</li>
+  <li>this.scroll.refresh()</li>
+</ul>
+<div class="class173">173.BS加载图片的问题
+  <ul>
+    <li>bs建立时会计算items的总高度，但是在图片还未加载完，高度就一定定了下来，导致滑动堵塞</li>
+    <li>通过监听图片加载完成：原生JS：img.onload=function(){}可以定义加载完成动作</li>
+    <li>图片item上加@load=“XXXX”</li>
+    <li>通过在main.js中定义一个vue实例，Vue.prototype.$bus=new Vue()，作为总线。在XXXX函数激活时使用事件总线传递'加载已完成的事件'：this.$bus.$emit('aaa')，然后在需传递组件中mounted中监听加载完成事件：this.$bus.$on('aaa',()=>{响应函数})</li>
+  </ul>
+</div>
+<div class="class175">175.刷新频繁的防抖函数处理</div>
+<ul>
+  <li>通过防抖函数，实现刷新页面之间间隔一段时间，防止刷新过于频繁</li>
+  <li>通过定义一个防抖函数dbounce，并将刷新函数传入dbounce中生成一个新的函数</li>
+  <li>生成函数通过settimeout调用来控制函数的执行缓冲时间</li>
+
+</ul>
+<div class="class177">tabcontrol的吸顶效果实现</div>
+<ul>
+  <li>1.获取元素的offtop,若在组件mounted中直接拿组件的offsettop会导致错误，因为此时上方图片可能还没有加载完，造成计算值偏小</li>
+  <li>通过相关图片的load发出时间，在home中接受并触发获取高度函数，这个时候的高度是准确的</li>
+  <li>translate可以改变fixed元素的位置，bs利用translate使fixed失效</li>
+  <li>利用偷换组件的方法实现一下动画切换效果，是个很常见的设计思路</li>
+  <li>注意要将两个互相替换组件设为vshow 否则会影响组件的设定</li>
+</ul>
+<div class="class179">179.home离开时记录状态和位置</div>
+<ul>
+  <li>默认情况下路由管理的vue组件在切换路由时会自动销毁</li>
+  <li>解决办法：在路由route view外部包裹keepalive</li>
+  <li>actived、deactived在组件路由进入出去时分别调用用于加载和保存saveY的值</li>
+  <li></li>
+</ul>
+<div class="class180">180.转到详情页并携带iid</div>
+<ul>
+  <li>1.设置路由地址后加后缀如:  /details/：iid(iid相当是设置的一个路由相关的变量),若要设置跳转至这个地址可直接使用this.$router.push（/details/+“获取到的iid”）的方法</li>
+  <li>在对应跳转至的路由组件内进行提取iid的方法为：this.组件接受的数据名=this.$route.param.iid(路由中设置的后缀名)</li>
+  <li></li>
+</ul>
+<div class="class181">181.导航栏的封装&182。数据请求以及轮播图展示 183.商品基本信息的展示</div>
+<ul>
+  <li>返回按钮使用router.back（）更佳</li>
+  <li>轮播图展示使用图片加载时激活缩放系数设置，先将图片进行拉伸再滚动</li>
+  <li>复杂json的解析可以放在组件的网络请求模块中进行进一步抽离，利用新建class类并使用contructor（）{}构建的方式进行构建所需的数据，从而进一步的方便传输与提取</li>
+</ul>
+<div class="class184">184.185.详情栏的滚动条加入</div>
+<ul>
+  <li>注意引入scroll组件时一定要为其设置高度，不然只能是原生的在起作用！</li>
+  <li>BS图片加载影响滚动，可以通过监控图片加载的数量达到图片总list长度的方法进行执行refresh()，从而更新高度并正常滑动</li>
+  <li>非父子组件通过bus总线解局</li>
+  <li>fixed属性在移动端会出现显示问题，应当写为绝对或相对定位</li>
+  <li>通过proptype设为false关闭滑动监听 提高性能</li>
+</ul>
+
+<div class="class206">206.点击标题回到对应位置</div>
+<ul>
+  <li>1.父子组件属性通信时需要将驼峰法转换为“XXX-XXX”</li>
+  <li>通过监听组件的offsettop并scrollto这个位置实现点击回到对应位置</li>
+  <li>获取offsettop错误：1。created时还没有获取元素，不可以<br>2.mouted时数据没有获取到，不可以<br>3.在获取到数据的回调用也无法正确获取，因为还未渲染完DOM <br>4.
+  this.$nextTick（（）=》{}）可以监控组件的渲染情况，但是使用它仍然不会吧最终的高度计算在内 <br>
+<em> 5.利用图片的loaded并加上防抖来获取offsettop高度</em></li>
+  <li>$bus调用事件需要在组件关闭时进行关闭事件监听，否则会造成再次多次监听同一事件，造成组件无法获取的问题，如果使用了keep-alive包裹，可以写在deactivated钩子函数中</li>
+  <li>判断多个连续边界的问题，可以考虑在边界的数组最后加上一个最大值，形成统一的条件判断公式，从而简化代码写法</li>
+</ul>
+<div class="210">210.混入封装：mixins</div>
+<ul>
+  <li>common中建立mixin.js,methods里定义公共函数、所需公共组件。将mixin.js中的组件作为导出，并在所需使用的组件内用mixins属性中引用：mixins：[XXX,YYY]  可以实现组件和方法及属性的混入</li>
+</ul>
+<div class="class211">211.将商品添加到购物车</div>
+<ul>
+  <li>let product=list.find((item)=>{return 关于item的表达式})，一旦符合表达式，就会返回给product list中符合条件的元素，可以对其进行更改已更新list</li>
+  <li>移动端index层级混乱导致显示问题，可以通过translateZ来改善</li>
+  <li>vuex中mutations只适用于简单的非异步的操作行为，对于复杂性较高、异步操作需要使用actions进行操作
+  </li>
+  <li>VUEX中对于mutations函数名的专门封装、防止名字用错，在引用时作为函数名引用需要两边包上：[] 在作为字符引用时（commit（‘XX’）），直接把‘XX’替换掉就好了
+  </li>
+  <li>可在store中创建getters.js用来拉取vuex store中的数据，在store的index文件中引入并getters，之后就可以在各个组件用store.getter来获取响应数据了</li>
+  <li>mapGetters是将score中的getter映射至局部计算属性</li>
+  <li>对于getter中创建了很多的函数，vuex提供：在组件内进行引入 import {mapGetters} from 'vuex',然后再计算属性computed中使用：...mapGetters([’函数名‘,’函数名‘])</li>
+  <li>...mapGetters({XXX：函数名})也可以写成这种形式，引用的时候使用key就好</li>
+  <li><em>注意getters内函数的默认参数时store中的state！！！！</em></li>
+  <li>betterscroll滑动需要再scroll组件外套一个div用来定高度，并且设置overflowhidden来去除原生滑动影响。</li>
+</ul>
+<div class="class220">220.全选按钮的状态显示</div>
+<ul>
+  <li>1.全选状态可以根据选中元素的长度来确定</li>
+  <li>2.click事件后，先反转，再对子元素按钮进行赋值，使其与全选按钮保持状态一致</li>
+  <li>3，取小数后 遍历计算 过滤的使用<br>    totalprice(){
+    return '￥' +this.$store.state.cartlist.filter(item=>{
+      return item.isActive}).reduce((preValue,item)=>{
+        return preValue+item.price.substring(1) * item.count
+      },0).toFixed(2)},</li>
+  <li></li>
+</ul>
+<div class="class221">221.弹窗toast的制作</div>
+<ul>
+  <li>通过actions中的添加商品函数中返回一个promise并定义执行后抛出res（‘XXX’），再在调用dispatch后使用.then用于执行添加成功后后续操作</div></li>
+  <li>与mapGetters相同，也有mapActions的用法</li>
+  <li>自定义插件的步骤：再插件文件夹indexjs下建立一个空对象，在main.js中引用，并使用Vue.use(对象)，然后再回到index.js下写obj.install=function(Vue){}</li>
+  <li>安装函数的写法：再引入插件组件vue模板文件后，在函数中创建一个该组件构造器const toastContructor = Vue.extend(Toast) 
+    <br>2.定义coast=new toastContructor，创建一个新的插件组件
+  <br>3.将其挂载至document.createElement中的div下；toast.$mount(document.createElement('div'))
+<br>4.最后将toast.$el(html元素)添加到body中，document.body.appendChild(toast.$el)
+<br>5.使用Vue原型添加这个toast组件 Vue.prototype.$toast=toast
+<br>6。插件中定义的方法可以通过this.$toast.XXX()直接使用!!!!</li>
+
+</ul>
+<div class="class225">225.解决移动端300ms延迟问题</div>
+<ul>
+  <li>FastClick ：一。npm install fastclick  二。main.js中import FastClick 三。添加。FastClick.attach（document。body）</li>
+  <li>polyfill 补丁（用于解决一些插件不适用的东西）</li>
+
+</ul>
+<div class="class">226.图片的懒加载</div>
+<ul>
+  <li>需要在图片使用时（再显示时）再用图片加载：Vue-lazyload</li>
+  <li>一。安装 npm install vue-lazyload 二。main.js中加载 、 Vue。use（），三。图片加载不能使用img src形式加载，src改成v-lazy=“url”</li>
+  <li>还未显示的图片的占位图设置：Vue。use（导入插件，{loading：require（‘url’）}）</li>
+  <li></li>
+</ul>
+<div class="class227">227.px2vw-css单位转化插件</div>
+<ul>
+  <li>有些元素并没有根据显示界面的大小进行缩放，这个插件就是帮助我们将所有的px转换为vw</li>
+  <li>名字：postcss-px-to-viewport  安装--D </li>
+  <li>使用这个插件，需要更</li>
+  <li></li>
+</ul>
+<div class="class228">228.nginx项目在windows下的部署</div>
+<ul>
+  <li>服务主机：阿里云、腾讯云、华为云</li>
+  <li>主机->操作系统->window(.net)/Linux->tomcat/nginx(相当于服务器软件、反向代理)</li>
+  <li>第一，将自己的电脑作为服务器->window->nginx</li>
+  <li>远程部署</li>
+</ul>
+<ul>
+  <li>官网：http://nginx.org/ 版本：machine：开发版 stable：稳定版 legacy：旧版本</li>
+  <li>解压放入没有中文的路径中，控制面板关闭iis <img src="../nginx控制面板.png" alt=""></li>
+  <li>进入localhost</li>
+  <li>将dist内的文件将nginx文件夹下的html文件夹内文件替换掉 或者把nginx.conf内root改成dist</li>
+  <li>配置文件中的server可以进行反向代理设置</li>
+</ul>
+<div class="class229">229.nginx在远程linux下的部署</div>
+<li>linux的分支：ubuntu是linux的一个UI可视操作系统（主要用于学习） centos作为服务器用的更多一点，更为稳定</li>
+<li>远程部署：远程主机->linux centos->nginx 这个主要通过终端命令方式去安装</li>
+<li>一。首先通过ssh登录至自己的远程主机、ssh mac支持，window下需要工具：WinSCP（查看服务器目录） SecureCRT（建立通话登录公网ip）</li>
+<li>二。yurm：linux下的安装包管理工具 用它来安装（SecureCRT登陆后）：yurm install nginx</li>
+<li>三。开启nginx服务：systemctl start nginx.service</li>
+<li>四。开启系统自启动nginx服务：systemctl enable nginx.service</li>
+<li>五。①通过WinSCP协助进行config的配置 ②或者SecureCRT里通过目录下vim nginx.conf进入文件编辑，'i'启动编辑，esc退出编辑，用shift"："按出冒号：输入wq（保存且退出） 回车</li>
+<div class="class230">230.响应式原理 依赖技术的分析和学习</div>
+<ul>
+  <li>Vue的响应式原理：vue的界面更新功能的实现</li>
+  <li>问题1：为什么修改data数据，message可以监听的到？
+    <br>:Object.defineProperty通过它监听 
+    <br> 首先const obj={message："XXX",name:"nnn"}
+    <br> 通过Object.keys(obj).forEach(key=>{
+      <br> let value=obj[key] //取出key
+      <br> Object.defineProperty(obj,key,{
+       <br> set(newValue){value=newValue},get(newValue){return value},})})
+       <br>一旦有赋值obj.name="kobe",就会执行set函数，达到监听改变的目的；而获取obj.name时将执行get函数，达到监听获取的目的
+    <br></li>
+  <li>问题2：数据发生改变时，哪些需要进行更新？哪些不更新：发布订阅者模式 根据解析html代码获取调用message的对象标签，借以通知相关方。</li>
+  <li>发布订阅者模式：</li>
+  <li>如何理解生命周期？</li>
+  <li>如何进行父子组件通信</li>
+</ul>
+<div class="class231">231.图解Vue</div>
+<ul>
+  <li>new Vue():路径1.data数据通过Observer监听所有data属性，每个属性对应一个dep依赖对象，对应一个subs-》观察者[1,2,3]</li>
+  <li>路径2.通过{{}}或：进行compile，在watcher绑定更新函数，另外初始化view（并由watcher更新update）</li>
+  <li>路径3：当有赋值动作时，set中调用notify-》驱动watcher update视图</li>
+  <li></li>
+</ul>
+</body>
+</html>

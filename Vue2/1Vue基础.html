@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1.Vue基础</title>
+</head>
+<style>
+    div[class^=class] {
+        font-weight: bold;
+        font-size: 25px;
+    }
+
+    table,
+    tr,
+    th,
+    td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+    em{color: red;
+     font-weight: bold;}
+</style>
+
+<body>
+    <div class="class1">1.Vue.js的认识和特点介绍</div>
+    <table>
+        <tr>
+            <th>1.读作view，为渐进式的框架：<br>
+                ①作为应用的一部分嵌入其中，有更丰富的交互体验<br>
+                ②Vue全家桶：Core+Vue-router+VueX</th>
+            <th>高级功能：<br>
+                解耦视图和数据<br>
+                可复用组件<br>
+                前端路由技术<br>
+                状态管理<br>
+                虚拟DOM</th>
+        </tr>
+    </table>
+    <div class="class4-6">4.hello Vuejs 与js命令式操作元素不同，Vue为响应式的声明式的<br>
+        即数组发生改变时，界面会自动改变（console中实现）--数组使用ul标签中声明v-for="item in movies"（遍历语句），li表中使用{{item}}来实现</div>
+    <table>
+        <tr>
+            <th>ES6:常量const let变量声明前缀<br>
+                1.const app=new Vue({el:'#app',data:{message:'hello'}})//使用Vue管理一个id为app的元素,元素下的组块也会受控<br>
+                el指定元素（css字符） data属性（对象）指定el相关数据
+                2. <a href="./Test/class4.html">数组与列表标签</a>
+                }
+            </th>
+        </tr>
+    </table>
+    <div class="class7">7.Vue mvvm(model viewmodel view viewmodel帮助实现view(DOM)和model(JS对象)之间的通信，VUE将js中定义的数据响应至view上)
+        <br>viewmodel：1.数据绑定并响应更新 2.解析监听响应事件回调
+    </div>
+    <div class="class8">8.Vue的option选项</div>
+        <div>选项类：el（类型：CSS字符串、或document.get...）、data(类型：对象、函数（组件化）)、
+        methods（方法）</div> 
+    <div class="class9">9-10.Vue的生命周期</div>
+    <div>1.new Vue():内部有一个生命周期，并且调用内部定义的回调函数可以展示进程</div>
+    <div>2.回调进程：beforecreate/created（组件创建后调用）/beforemouted/mouted（组件挂载到dom时会调用）/before update/updated（内容更新时会调用）/beforedestroy/destroy</div>
+    <div class="class12">12-13.插值操作（模板内容） mustache（胡须）语法、v-once不响应、</div>
+    <ul>
+        <li>1.mustache{{}}可以进行简单的字符连接、数字运算</li>
+        <li>2.当数据发生改变，不希望界面响应时：加属性v-once</li>
+        <li>3.data中声明url：“html编码”,元素标签中添加v-html="url" </li>
+        <li>4.v-text='message'，另一种显示内容方式，但没有{{}}灵活</li>
+        <li>5.v-pre 将标签中的内容不解析显示出来，原生态显示</li>
+        <li>6.v-cloak斗篷，解析过程中隐藏标签内容，解析之后会删除此属性，从而显示出解析结果，可以通过<em style="color: red;">控制[v-cloak]的type</em>来操作元素内容解析前后出现的标签闪动问题
+        </li>
+    </ul>
+    <div class="class14">14.v-bind的基本使用--绑定标签属性（如href、src）</div>
+    <ul>
+        <li>在data中声明imgURL: 然后标签中 v-bind:src='imgURL'</li>
+        <li>语法糖：：一个冒号</li>
+        <li>class变量绑定(对象语法) 多class选择方案：v-bind:class="{类名1：true,类名2：false}",根据布尔值选择类1，<a href="./Test/class14动态绑定属性.html"> 可在属性中声明布尔值和布尔值切换方法</a></li>
+        <li>需要固有定义的class在前面写好，然后可与v bind的class进行一个合并</li>
+        <li>v-bind简写(对象语法)：在方法中写一个函数return {类名1：true,类名2：false}，然后v-bind：class调用这个函数</li>
+        <li>v-bind(数组语法)：v-bind:class="[类名1,类名2]",类名可以用变量在其中声明，或者简写做函数定义数组</li>
+        <li>v-for "(item,index) in movies"可以返回值和序列，index单独用{{}}显示</li>
+    </ul>
+    <div class="class18">18.v-bind动态绑定style</div>
+    <div>在组件化开发的时候，可能使用动态绑定会多一点：组件化：将网页每一部分单独封装一个文件.vue,使之可以进行复用及定制</div>
+    <ul>
+    <li>对象语法：：style="{属性名：属性值}"，font-size或fontSize驼峰写法，单写属性值50px会被当作变量出错,要加引号，vue声明中也需要加。</li>
+    <li>对象语法：函数表示法同上</li>
+    <li>数组语法：</li>
+</ul>
+<div class="class20" style="color: red;">20.计算属性</div>
+<div>将数据转化计算再显示即显示前处理,并且作为属性，使用conputed：{定义函数（计算属性与动作无关的）},在引用时直接引用函数名而不需要加()</div>
+<div>计算属性会进行缓存，多次使用不需要重新进行计算，只会调用一次，效率更高</div>
+<br>
+<br>
+<br>
+<div class="class24">24.计算属性fullname的setter与getter</div>
+<ul>
+    <li>计算属性一般是不写set方法的，只有get方法，即是只读属性的，computer中调用的是get方法的简写手法，返回的是一个属性，不用加小括号</li>
+    <li>计算属性中set可以用于view端根据传入的fullname的值来设置数据属性中的值，从而达到不改正代码数据但更新view界面内容的效果</li>
+</ul>
+<div class="class25">25.计算属性与method的对比</div>
+<ul>
+    <li>1.method调用与实际写出的函数次数相等</li>
+    <li>2.计算属性只需要调用一次，会比对与之前的变化选择执行与否</li>
+    <li>3.在属性运用多次且函数内部循环等高耗内存时，选择计算属性</li>
+</ul>
+<div class="class26">26.var与let（ES6语法）</div>
+<ul>
+    <li>1.Brendan Eich创始人,let是更完美的var,由于var声明变量的作用域与函数的定义有关，对有些块if、for会引出一些问题</li>
+    <li>2.var没有块级作用域，只有变量作用域：①对if for不起作用，需要借用新建function作用域来解决本身问题 ②按钮监听绑定用let已经可以完成，把if for语句块作为了作用域，内部函数可以引用外部循环域的i了</li>
+
+</ul>
+<div class="class28">28.const的使用和注意点</div>
+<ul>
+    <li>1.const将标识符变为常量使之不会再其他地方被赋值修改，在开发中优先使用const</li>
+    <li>2.只有需要改变某个标识符时才使用let，const定义时必须赋值</li>
+    <li>3.const定义即‘指向’确定了且不变，但obj内部的属性可以进行改变</li>
+</ul>
+<div class="class29">28.对象字面量增强写法</div>
+<ul>
+    <li>常规字面量：const obj={name：'why',eat：function(){}}</li>
+    <li>属性的增强写法：const obj{name,age,height,}(在name、age已经定义为const的条件下，自动生成对应的属性属性值对)</li>
+    <li>函数的增强写法：const obj={run(){},}直接就不写方法名：function了</li>
+</ul>
+<div class="class30">30.v-on基本使用与语法糖</div>
+<ul>
+    <li>v-on:click也可以写成 @click</li>
+    <li>v-on参数传递：在时间监听时调用方法且没有参数需要传递，可以不加()</li>
+    <li>函数定义时有参数但是监听调用时有（）但没有参数传递，不会报错，会定义参数为undefined</li>
+    <li>监听调用时没有加(),会传过来一个event,，如果需要使用event需要在形参中定义一个event</li>
+    <li>event外还需要其他参数,$event作为形参的最后一个参数传入</li>
+    <li>v-on的修饰符使用：@click.stop可以阻止该事件的冒泡（event.stopPropagation()）；click.prevent由于在表单的提交动作点击提交一瞬间会进行自动跳转（event.preventDefault()），使用prevent可以阻止这一跳转行为并为click设置一些动作行为</li>
+    <li>串联：@click.stop.prevent</li>
+    <li>v-on的修饰符使用：@keyup.enter监听enter键或者也可以写@keyup.键代码</li>
+    <li>@click.native监听自定义组件</li>
+    <li>@click.once只监听一次防止重复提交</li>
+</ul>
+<div class="class33">33.v-if v-else</div>
+<ul>
+    <li>通过在父元素中定义 v-if=布尔值决定内部元素是否显示v相关渲染</li>
+    <li>创建两组标签组分别写v-if v-else</li>
+    <li>创建三组标签组分别写v-if v-else-if v-else</li>
+    <li>较多的判断且较复杂的判断建议将属性作为函数返回值（函数中继续逻辑判断）进行计算</li>
+</ul>
+<div class="class35">35.登录切换的小案例</div>
+<ul>
+    <li>input切换前后内容保持的问题：vue先将网页内容作为虚拟DOM,再将其渲染到视图。处于效率考量,input的value被复用了(前后未更新的内容)</li>
+    <li>解决这个问题可以将input加上不同的key=‘XXX’属性使之可以区分不同标签</li>
+</ul>
+<div class="class36">36.v-show使用和v-if的区别</div>
+<ul>
+    <li>v-show=布尔值，可以决定内容是否显示</li>
+    <li>if else是将节点去除，v-show是使元素display：none，DOM中还有此元素</li>
+    <li>切换频率较高时使用show，一次切换的话用if v-if用的比较多</li>
+</ul>
+<div class="class37">37.v-for遍历</div>
+<ul>
+    <li>v-for='item in 数组名'</li>
+    <li>v-for'(item,index) in 数组名'</li>
+    <li>v-for'item in 对象名'</li>
+    <li>v-for'(value,key) in 对象名'</li>
+    <li>v-for'(value,key，index) in 对象名'</li>
+</ul>
+<div class="class38">38.v-for绑定和非绑定key</div>
+<li>在对数组中间进行操作时，当其中元素发生变化时,其他受影响元素也会相应刷新，影响效率</li>
+<li>给元素加上:key=‘item’时，会按照key优化刷新，避免刷新重复单元</li>
+<div class="class39">39.数组中具有响应式的方法</div>
+<ul>
+    <li>push()后面添加（可多个） splice()在中间部分替换 pop()从后删除1个 shift()从前面删除1个 unshift()在最前面添加元素（可多个）sort()排序 reverse()反转</li>
+    <li>通过索引值修改元素无法响应</li>
+    <li>可变参数function(...num){} sum(一组长度不确定的数组)...num代表可以使用，，分隔传多个值</li>
+    <li>索引值无法更新修改的问题可使用Vue.set(this.letters,1,'set')来进行更新或使用splice进行替换</li>
+    <li></li>
+</ul>
+<div class="class40">40.购物车案例 小数点 过滤器 数组高阶操作函数</div>
+<ul>
+    <li>1.数字转变为小数点：num.fixed(2) 两位小数</li>
+    <li>2.数字转变为小数点：vue属性之过滤器 filters：{showPrice（参数）{return '￥'+参数.toFixed(2)}} 以某种格式输出，调用时使用{{待处理数|showPrice}}按格式显示</li>
+    <li>①ES6 for循环：for(let i in booklists){} i为序列值②for(let i of booklists) i可以取到数组里面的元素</li>
+    
+</ul>
+<div class="class45">45.JS高阶函数的使用</div>
+<ul>
+    <li>1.filter：nums.filter(function(n){})回调函数每次调用n返回一个布尔值，当返回true时，会将该参数加入新数组里；保持原顺序不变</li>
+    <li>2.map：num.map(function(n){return n*2})所有元素*2，有第二个参数，为index</li>
+    <li>3.reduce:num.reduce(function(preValue,n){},0) preValue第一次为0，第二次为return的值，而n为数组里的值，累计式计算。有第三个参数，为index，第四个参数：当前所属的数组对象</li>
+    <li>4.用reduce求和：let d=a.reduce(function(pre,n){return pre+n},7) 7是初始pre值</li>
+    <li>4.可以将filter、map、reduce链式连接进行计算</li>
+</ul>
+<div class="class46"><em>46.v-model的使用和原理 双向绑定</em> </div>
+<div>v-model实现了表单模型数据value与vue中属性值的双向绑定</div>
+<ul>
+    <li>在input中定义v-model='message'，达到了一种双向绑定的效果即改变input响应的绑定属性也随之变化，而仅仅是：value是达不到这种效果的</li>
+    <li>双向绑定的原理：：value通过input事件绑定的改变message的值，通过event.target.value来获取当前值并赋予他</li>
+    <li>原理表达式：@input='message=$event.target.value'</li>
+    <li>v-model也可以用于textarea标签</li>
+</ul>
+<div class="class47">47.v-model结合radio使用</div>
+<ul>
+    <li>radio需要name相同可以多按钮互斥</li>
+    <li>radio中写v-model可以不用指定name相等便能够达到选择互斥的结果</li>
+    <li>v-model绑定的属性值可以指定默认值</li>
+    <li>name是作为表单提交时的提交至服务器的值，结果只能有一个</li>
+</ul>
+<div class="class48">48.v-model结合checkbox使用</div>
+<ul>
+    <li>单选框：checkbox同意协议中经常使用<a href="./Test/class46v-model.html">示例</a></li>
+    <li>通过label标签for=’需标记元素的id‘，可以实现扩大选择框区域的效果</li>
+    <li>vue中可以通过绑定:disabled来实现按钮的变暗显示</li>
+    <li>多选框：注意啊 value要赋予不同的值才能实现分别选，不然可能一次选很多</li>
+</ul>
+<div class="class49">49.v-model结合select类型使用</div>
+<ul><li>select>option下拉框选择,可以在select中添加v-model实现与vue属性值的绑定
+</li></ul>
+<li>select中加mutiple实现多选的功能，option中添加selected可作为默认选中</li>
+<div class="class50">50.值绑定</div>
+<ul>
+    <li>值绑定（v-bind）(动态绑定元素value id等)：在vue模型中已有数组作为表单中的选项等、使用v-for创建label>input标签</li>
+    <li>然后通过v-model达到双向绑定的效果</li>
+</ul>
+<div class="class51">51.v-model修饰符的使用</div>
+<ul>
+    <li>1.修饰符：v-model.lazy=”“ 会让更新后的属性值在失去焦点或回车的时候才刷新(注意这里会影响其他正常刷新的input)</li>
+    <li>2.number：input type指定为number先实现输入锁定数值类型，然后使用v-model.lazy可实现将输入值直接转换为number的目的（原本默认为string）</li>
+    <li>3.trim（剥除空格）：v-model.lazy可以达到输入值自动清除前后空格的效果</li>
+</ul>
+
+
+</body>
+</html>

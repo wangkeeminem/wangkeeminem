@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Promise vuex和网络请求封装</title>
+  <style>
+    div[class^=class] {
+      font-weight: bold;
+      font-size: 25px;
+    }
+
+    table,
+    tr,
+    th,
+    td {
+      border: 1px solid black;
+      border-collapse: collapse;
+    }
+
+    em {
+      color: red;
+      font-weight: bold;
+    }
+
+    img {
+      height: 400px;
+      width: 400px;
+    }
+  </style>
+</head>
+<body>
+  <div class="class125">125.路径别名 Promise Vuex 网络请求封装 项目开发</div>
+  <div>路径别名的取法：resolve解决路径问题：alias别名：'@': resolve('src'),适用于import方式。而在src这种路径：使用别名前面需要加“~”</div>
+  
+  <div class="class126">126.Promise 127.Promise的三种状态和另外处理方式</div>
+  <ul>
+    <li>Promise一种异步编程的解决方案,简单的ajax难看不易维护；Promise它是一种封装的类:new Promise((resolve,reject)=>{
+      setTimeout(()=>{
+        resolve()
+     },1000)
+   }).then(()=>{
+     console.log('hello world');
+     console.log('hello world');
+     console.log('hello world');
+     console.log('hello world');
+     console.log('hello world');
+     return new Promise((</li>
+    <li>用到promise情况：需要异步操作的时候，在.then（）里定义执行函数</li>
+    <li>new Promise（）中是一个需要relove、reject作为函数参数的函数1，在这个函数1中，写出异步网络请求代码（settimeout），但请求代码所执行的动作函数2并不写在请求中，而是先指定reslove（参数）代替，然后在promise的then方法（（形参数data）=》{}）中定义异步执行代码</li>
+    <li>处理失败调用reject（error）：用.catch((error=>的方法调用异常处理代码))接到最后面then的后面即.then(XXX).catch，或在最后一个then的第二个参数内写入异常的处理函数</li>
+    <li>总体思想：链式编程，流程清晰，易于维护</li>
+  </ul>
+<div class="class128">128.Promise的链式调用</div>
+<ul>
+  <li>作用：链式调用优雅的处理异步调用</li>
+  <li>Promise将所有异步包装的动作包裹起来</li>
+  <li>第一次异步后面动作并非异步动作的写法：第一次的then中执行动作后加return Promise.resolve(res+"111").then</li>
+  <li>更简洁写法：省略掉Promise.resolve，直接return 想传输的结果</li>
+  <li>链式本质 前一次的return值默认作为下一次then调用方法的参数</li>
+  <li>通过throw “XXX”、或者return Promise.reject(XXX)来抛出异常，在catch方法中继续宁捕获参数调用方法</li>
+</ul>
+<div class="class129">129.promise的All方法使用</div>
+<ul>
+  <li>业务本身依赖多个请求，需要得到多个请求都实现的状态才可以进行业务的正常处理，这种操作需要promise实现</li>
+  <li>Promise.all([new Promise().then(XXX).catch(XXX),new Promise(XXX).then(XXX).catch(XXX)。]).then(results=>{result[0],....})传入一个可迭代对象(类数组对象),then中result[0]就代表第一组请求的结果</li>
+</ul>
+
+<div class="class130">130.Vuex vue.js状态管理工具</div>
+<ul>
+  <li>状态管理：多个组件间状态（变量？）的共享、互相借用，找个大管家管理一哈，同时也达到响应式效果</li>
+  <li>即将多个组件共享的变量存储在一个对象中，这个对象放在顶层Vue的实例中，是其他组件可以使用👇</li>
+  <li>const shareobj={name:"why"},用vue.prototype.shareobj=shareobj可以简单的来实现，但并不是响应式的（因为新建的属性并不是data的那种响应式的）</li>
+  <li>VueX使用场景：用户信息多页面保留使用（登录token令牌、地理位置、头像、购物车、状态信息等）</li>
+</ul>
+<div class="class131">131.单界面和多界面状态管理切换</div>
+<ul>单界面的状态管理
+  <li>1.state:组件的变量</li>
+  <li>2.view组建的模板</li>
+  <li>3.action：用户对dom的行为</li>
+  <li>引入vuex文件对象，使用vue安装，定义store对象，导出，在main.js中导入store index.js文件，作为组件插入底层组件内部。</li>
+  <img src="../Vuex indexjs.png" alt="">
+  <li>子组件使用$store.state.couter引用公用store对象的状态</li>
+  <li>Vue官方为了能在dev tool中监控到变量的状态的改变细节进行动作跟踪，需要必须通过从组件--action（异步操作才做）--Mutations--变量--组件这种路径去更改状态，且异步提交的动作必须通过要action（否则跟踪不到）</li>
+</ul>
+<div class="class132">132.vuex-devtools和mutations</div>
+<ul>
+  <li>安装：谷歌安装vue devtools</li>
+  <li>mutation内定义函数（默认参数是state），函数内对state.变量名进行执行函数定义，之后在组件内使用该动作：this.$store.commit('函数名')</li>
+</ul>
+<div class="class133">133.Vuex的几个核心概念</div>
+<ul>State：
+  <li>State:单一状态树：single source of truth单一数据源。vuex的设计原则：推荐只使用一个store用于管理所有应用层级的公共状态</li>
+  <li>getters：他可以是stroe内部对象函数传入的第二个参数，比较像computed：获取state的某个计算后的值：给它定义一个函数。使用store.getters.XXX就可以使用。也相当与filter的功能</li>
+  <li>getters也可以返回一个函数，函数的参数可以由外部组件进行操作从而返回不同的值</li>
+  <li>方法尽量不要写箭头函数，容易混乱</li>
+
+</ul>
+<div class="class133">134.135 mutation的携带参数和提交风格</div>
+<ul>
+  <li>mutation主要包含两部分：事件类型 回调函数（commit传入事件类型）</li>
+  <li>commit在提交时，可以在事件类型后加一个参数（可以是数字，数组类型等等）进行提交，以完成用户对公共数据的操作，数组采用push的方法进行添加</li>
+  <li>commit（）也可以提交一个对象，type为其mutation的事件类型，后面可以指定参数等，注意此时在mutation中第二个参数对应了整个对象，可以取他的属性对传入的参数进行操作</li>
+</ul>
+<div class="class134">136.vuex数据的响应式原理</div>
+<ul>
+  <li>vuex会将state中的数据加入响应时系统中，但是不会将后来通过外部动作后续增加的属性一同加入响应，要解决这种问题👇</li>
+  <li>Vue.set(要改的对象，key或索引，替换值)</li>
+  <li>Vue.delete(state.info,'age')删除属性</li>
+</ul>
+<div class="class135">137vuex的类型常量</div>
+<div>统一化：mutation的方法名与commit参数的一致性：在store中新建一个mutations-type.js文件，里面定义一个标识符代替响应的字符串，之后在commit的参数中直接使用导入的标识符，而在index内使用[标识符]代表响应的方法名</div>
+<div class="class137">139.actions的使用详解</div>
+<ul>
+  <li>mutations对异步调用时的错误处理：不会更新异步调用的state内容，但会在view端显示ok。下次非异步调用mutation时会多执行一次非异步调用，数据端不会响应异步调用效果
+  </li>
+  <li>👆使用action进行异步操作：方法：action里的方法相当于context相当于store，可以用其来调用commit（）方法</li>
+  <li>调用action的方法：$store.dispatch('action名字')</li>
+  <li>action本身可以返回一个promise，使用这个返回可以在组件外部进行调用dispatch函数后加上then函数进行异步调用后动作实行声明</li>
+</ul>
+
+<div class="class140">140.modules的使用详解</div>
+<ul>
+  <li>想单独对vuex store进行抽离的话，可以用modules进行划分：</li>
+  <li>可以自己及进行定义状态：const moduleA={state：{name：}}，然后再store中定义：modules：{a:moduleA}</li>
+  <li>modules是为了避免state过于臃肿设计的，他的内部相当于是在state下面，所有上面的a需要用store.a.name获取</li>
+  <li>除了外部获取state内容外，modules的mutation的获取以及内部内容的获取和其他定义的store方法是一样的，即$store.commit这种都能用</li>
+  <li>getter的用法也与一般模块一样，若要引用其他模块的内容，getter的第三个参数（state（自身的）, getters（自身的）,rootState）rootState代表原来的store下的state</li>
+  <li>action第一个参数context的与一般用法是一样的，他可以直接调用根store中的commit</li>
+</ul>
+<div class="class141">141.对象的解构和vuex文件的目录</div>
+<em>前文提到context为一个对象，它内部由getter、commit、state等，对象的结构就是可以直接以{getter,commit,state}这种形式表示context这个对象，从而直接再函数体中进行调用</em>
+<div>vuex文件文件的管理：state放在模块外，将其他对象抽出按名称放入响应js文件，新建的moduleA放在index当前目录新建文件下的js文件里</div>
+<div class="class142">142.网络请求模块的选择axios</div>
+<ul>
+  <li>传统的Ajax是基于XMLHttpRequest（XHR）,很麻烦</li>
+  <li>相对于Ajax经常使用jQuery-Ajax会非常好用，但这个框架已经不太流行了。vueresource是vue推出的版本但后续不再维护</li>
+  <li>跨域jsonp--ajax自学去吧。。。</li>
+  <li>axios：功能：1、在浏览器中发送XHR请求 在node.js中发送http请求 支持promise API，支持拦截请求和响应、支持转换请求和响应数据（ajax i/o systew）</li>
+  <li></li>
+</ul>
+<div class="class141">143.axios框架基本使用</div>
+<ul>
+  <li>安装npm install axios@0.18.0 --save 后导入可以直接使用，传入url：axios（{url：}），可以返回一个promise，接上then（打印res），默认就是get请求</li>
+  <li>如果要指定动作方式：method：‘get’/'post'  或者写为axios.get()也可以</li>
+  <li>data中是服务器真实返回的数据，axios框架会自动加上header、requese、status、config等</li>
+  <li>get请求中还可以添加params属性：{type："pop",page:1}用于为页面url问好后的内容进行拼接</li>
+  <li>axios返回的是个promise，可以直接调用他的方法</li>
+</ul>
+<div class="class142">144.axios发送并发请求---多个请求需要都完成的任务</div>
+<ul>
+  <li>axios.all([axios(),axios()]).then(results=>{result[0],result[1]})可以类似与promise的使用</li>
+  <li>axios.all([axios(),axios()]).then(results=>{result[0],result[1]}) 或者用.then.spread(（res1，res2）=>可以提取出子元素</li>
+</ul>
+<div class="class143">145.全局配置(主url以及超时控制)</div>
+<ul>
+  <li>还可以配置一个baseurl作为主地址，然后url写小的后缀地址，timeout：5可以控制超时时间</li>
+  <li>配置默认基础url和超时时间：axios.default.baseURL=xxx\axios.default.timeout=n毫秒</li>
+  <li>可以传到axios的配置信息：url、method、transformRequest（请求前的数据处理）、baseURL、headers params（拼接参数，与get对应）、transformResponse（请求后的数据处理）timeout</li>
+  <li></li>
+</ul>
+<div class="class146">146.axios的实例与模块封装</div>
+<ul>
+  <li>对于分布式服务器，请求的根地址可能会不一样（少量会：首页、分类等分开用不一样服务器。多数：使用代理服务器根据服务器拥挤程度提供代理服务）</li>
+  <li>这种上述的全局baseURL设置就不合理了</li>
+  <li>为应对这种情况👆创建axios实例instance1 const instance1=axios.create({baseURL:XXX,time:XXX}),然后直接instance1（{}）</li>
+  <li>然后可以多设置instance进行不同的baseURL和timeout等不同的配置（针对不同的服务器）</li>
+  <li>实现axios的封装：网页请求设计的思路：<em> 在组件创建时利用生命周期函数即created函数调用axios的得到data并传到组件data属性中给组件使用</em></li>
+  <li>为什么要axios封装：用上述的方法多次引用第三方axios，对这个依赖性太强！维护成本非常高</li>
+  <li>最终封装到一个文件，其他组件面向这个文件：src下建个文件夹network：request.js写入：<br> 
+    export function request(config,sucess(函数),fail(函数)){  
+    在内部建instance1，instance1（{config}）的then或catch运行success和fail函数、在外部组件定义函数动作
+    }引入可以多个实例  config作为配置对象。</li>
+    <li>另一种config传入办法，把网络配置、成功、失败动作作为一整个对象传给config</li>
+    <li><em> 将axios的请求放在pormise中，通过他的then或catch给promise的resolve reject赋值，然后通过promise这一层返回到组件，可以实现对后续其他请求框架的封装以及适用性</em></li>
+</ul>
+<div class="class147">147.拦截器的使用</div>
+<ul>
+  <li>请求成功、请求失败、响应成功、响应失败的拦截</li>
+  <li>axios.interceptors.request.use(config=>{要加入renturn config，否则会请求失败，使用场景：1.可以在这个中加上一些配置信息或转化、2.请求时显示效果（响应时再关闭）、3必须携带特殊信息登录的},err=>{请求失败响应})传入两个函数，</li>
+  <li>axios.interceptors.response.use(result=>{需要返回result.data},err=>{})</li>
+  <li></li>
+  <li></li>
+</ul>
+</body>
+</html>
