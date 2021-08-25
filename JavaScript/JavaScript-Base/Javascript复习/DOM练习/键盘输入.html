@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript">
+    window.onload=function(){
+    //    document.onkeydown=function(event){console.log(event.ctrlKey&&(event.keyCode+'被按下'))}
+       var inputs=document.getElementById('myinput');
+       
+       inputs.onkeydown=function(){console.log(event);event.returnValue='1'}
+
+       
+
+    }
+    // console.log(event.ctrlKey&&(event.keyCode+'被按下'));
+    </script>
+</head>
+<body>
+    <input type='password' id='myinput' type="text">
+    <a href="./键盘控制小盒子.html">ccc</a>
+</body>
+</html>

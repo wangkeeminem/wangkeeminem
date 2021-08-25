@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			
+			#outer{
+				width: 500px;
+				margin: 50px auto;
+				padding: 10px;
+				background-color: greenyellow;
+				/*设置文本居中*/
+				text-align: center;
+			}
+		</style>
+		
+		<script type="text/javascript">
+			
+			window.onload = function(){
+			var btn1=document.getElementById('next');
+			var i =0;
+			btn1.onclick=function(){
+				var img=document.getElementsByTagName('img');
+				i++;				
+				img[0].src='img/'+(i%5+1)+'.jpg';
+				
+			}
+			var btn2=document.getElementById('prev');
+			btn2.onclick=function(){
+				var img=document.getElementsByTagName('img');
+				i--;				
+				if(i>=0){img[0].src='img/'+(Math.abs(i)%5+1)+'.jpg'}
+				else{i=4;img[0].src='img/'+(Math.abs(i)%5+1)+'.jpg'}				
+			}
+			setInterval(function(){var img=document.getElementsByTagName('img');
+				i++;				
+				img[0].src='img/'+(i%5+1)+'.jpg';},1000)
+				
+			};
+			
+			
+		</script>
+	</head>
+	<body>
+		<div id="outer">
+			
+			<p id="info"></p>
+			
+			<img src="img/1.jpg" alt="冰棍" />
+			
+			<button id="prev">上一张</button>
+			<button id="next">下一张</button>
+			
+		</div>
+	</body>
+</html>

@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/all.min.css">
+    <title>DOM&BOM</title>
+    <style>
+        table,
+        td,
+        th,
+        tr {
+            border: 1px solid black;
+            border-collapse: collapse;
+            text-align: center;
+        }
+
+        td {
+            width: 160px;
+        }
+    </style>
+    <script type="text/javascript">
+
+
+            // console.log(typeof document)
+    </script>
+
+</head>
+
+<body>
+    <button id='btn'>我是个按钮</button>
+    <div class="class91">91.DOM简介--文档对象模型</div>
+    <table>
+        <thead>文档对象模型</thead>
+        <tr>
+            <th>文档</th>
+            <th>对象</th>
+            <th>模型</th>
+        </tr>
+        <tr>
+            <td>网页</td>
+            <td>将网页每个部分对象化</td>
+            <td>使用模型表达对象间的关系，方便获取对象</td>
+        </tr>
+    </table>
+    <table>
+        <thead>节点node：是构成网页（网络）最基本的部分</thead>
+        <tr>
+            <th>文档节点</th>
+            <th>元素节点</th>
+            <th>属性节点</th>
+            <th>文本节点</th>
+        </tr>
+        <tr>
+            <td>整个HTML</td>
+            <td>各种HTML标签</td>
+            <td>id name等等</td>
+            <td>标签之间的文本内容</td>
+        </tr>
+        <tr>
+            <td>1.节点名nodename：#document <br>2.nodetype：9 <br>3.nodevalue:null </td>
+            <td>1.节点名：标签名div。。<br>2.nodetype：1<br>3.nodevalue:null </td>
+            <td>1节点名：属性名 class name id<br>2.nodetype：2<br>3.nodevalue:属性值 </td>
+            <td>1.节点名：#text<br>2.nodetype：3<br>3.nodevalue:文本内容 </td>
+        </tr>
+    </table>
+    <div>1.获取对象：var btn=document.getElementById('btn')
+        <br>2.编辑对象的内容（html代码）btn.innerHTML='XXX',innerText可以获取文本内容，对于input这种自结束标签使用.value来获取其内容
+        读取标签class的方法：元素.className<br> 如果在head中进行获取，返回为null。
+    </div>
+    <div class="class92">92.事件的简介</div>
+    <table>
+        <thead>事件的简介DOM EVENT：点击、拖放、开关（用户动作）--发生后行为的处理
+        </thead>
+        <tr>
+            <th>可以在属性中设置标签的onclick属性中绑定相应JS代码、该方法是元素的结构与行为耦合，不方便维护使用</th>
+            <th>在body中写script，也是可以的，不方面管理维护</th>
+            <th>在head中写script，需要在页面加载下：1。获取元素 2.绑定动作相应函数<br>写法：<em
+                    style="font-size: 40px; color:blue;font-weight: bold;">window.onload=function(){1.2.}</em></th>
+        </tr>
+    </table>
+    <div class="class93">93.文档的加载</div>
+    <table>
+        <tr>
+            <th>通过id属性获取：getElementById()</th>
+            <th>通过标签名获取：getElementsByTagName() 返回html collection类数组对象</th>
+            <th>通过name属性获取：getElementsByName()返回node list类数组对象</th>
+            <th class="compatibility notforIE8">通过属性名获取：getElemrntByClassName() 返回类数组对象<em
+                    style="color: blue;font-weight: bold;">IE8及以下不支持</em></th>
+        </tr>
+    </table>
+    <div class="class96">96.通过元素节点调用其关联节点元素</div>
+    <table>
+        <tr>
+            <th>1.元素.getElementsByTagName()就这一个方法！获取当前元素所有后代节点</th>
+            <th class="compatibility notforIE8">2.childNodes：当前元素的所有子节点，<em
+                    style="color: red;font-weight: bold;">但会包含文本节点不同标签间的空格区域</em> 属性 IE8及以下不会算上文本节点</th>
+            <th>3.firstChild 第一个子节点 <em style="color: red;font-weight: bold;">会包含文本节点</em>，功能类似children[0]</th>
+            <th>4.lastChild最后一个子节点</th>
+            <th>5.children 返回所有子元素，只包含标签元素</th>
+            <th class="compatibility notforIE8">6.firstElementChild <em style="color: blue;font-weight: bold;">第一个子元素
+                    IE8及以下不支持</em></th>
+        </tr>
+    </table>
+    <div class="class97">97.DOM查询</div>
+    <table>
+        <tr>
+            <th>1.父节点：parentNode 父节点肯定是元素 innerText可以获取文本内容</th>
+            <th>2.previousSibling 前一个兄弟节点（会包含空格之类）</th>
+            <th>3.nextSibling 后一个兄弟节点</th>
+            <th class="compatibility notforIE8">4.previousElementSibling 前一个兄弟元素<em
+                    style="color: blue;font-weight: bold;">IE8及以下不支持</em></th>
+            <th>输入文本框中的值可用value来指定,文本节点的值可以使用nodevalue来获取</th>
+            <th><em style="color: red;font-weight: bold;">input checkbox类型的checked：选中为true，没选中为false</em></th>
+        </tr>
+    </table>
+    <div class="class101">DOM查询的其他方法</div>
+    <table>
+        <thead>其他方法</thead>
+        <tr>
+            <th>获取body标签：document.body</th>
+            <th>获取html标签：document.documentElement</th>
+            <th>获取全部元素：document.all/document.getElementsByTagName("*")</th>
+        </tr>
+        <tbody>css选择器的方法
+        </tbody>
+        <tr>
+            <td colspan="3" class="compatibility notforIE7"><em
+                    style="color: red;font-weight: bold;">IE8及以上支持;</em>1.document.querySelector('.box1 div')
+                通过css选择器去找对象，且返回<em
+                    style="color: red;font-weight: bold;">唯一元素</em>（多个中的第一个）<br>2.找所有元素：document.quarySelectorAll('XXX'),将返回nodelist
+            </td>
+        </tr>
+    </table>
+    <div class="class102">102.DOM增删改</div>
+    <table>
+        <tr>
+            <th>创建元素节点</th>
+            <th>添加子节点</th>
+            <th>删除子节点</th>
+            <th>替换子节点</th>
+
+        </tr>
+        <tr>
+            <td>1.document.createElement('标签名') <br>2.对于没有标签名的文本节点：document.createTextNode('文本内容')</td>
+            <td>1.在所有子节点之后添加：父节点.appendChild(子节点) <br>2.在某个子节点之前添加：父节点.insertBefore(新子节点，被插队的子节点)</td>
+            <td>父节点.removeChild(子节点)，<em
+                    style="color: red;font-weight: bold;">删除自己通常使用tr.parentNode.removeChild(tr)来实现</em></td>
+            <td>父节点.replaceChild(新子节点，被替换的子节点)</td>
+        </tr>
+    </table>
+    <div class="class103">103.1.对于链接元素a，防止跳转可设置其点击回调函数返回false
+        或者直接写为：javascript：；<br>2.使用confirm提供确认框，返回True为确认，false为取消<br>for循环中的响应函数执行时for循环早已执行完毕。。。响应函数执行时如果再在函数中使用for的i，肯定已经超出索引范围了，这时就不能用i了，但是可以使用this来指向动作对应的元素
+    </div>
+    <div class="class107">107.操作<em style="color: red;font-weight: bold;">内联样式</em>即元素内部定义的样式，<em
+            style="color: red;font-weight: bold;">如果样式中写了！important</em>，对js操作无效。<br>javascript操作内联样式优先级较高，方式：元素.style.样式名=样式值（字符串形式'300px'），像background-color这类的需要改为backgroundColor
+    </div>
+    <div class="class108">108.获取样式表CSS中的样式</div>
+    <table>
+        <tr>
+            <th>元素.currentStyle.样式名</th>
+            <th>使用window的方法 var obj=getComputedStyle(元素，null（也可传递伪元素after before之类）)，用obj的属性去访问样式obj.height</th>
+            <th></th>
+        </tr>
+        <tr>
+            <td class="compatibility onlyforIE">只有IE才支持，获取当前正在使用的样式,不常用，可以进行赋值</td>
+            <td class="compatibility notforIE8"><em
+                    style="color: red;font-weight: bold;">IE8及以下不支持</em>，这种方法获取的是个只读样式，而且比currentStyle显示的值更直观真实（不会有auto之类的值），无法进行赋值
+            </td>
+            <td></td>
+        </tr>
+    </table>
+    <div class="class110">110.其他样式相关属性</div>
+    <table>
+        <tr>
+            <th>获取元素的可见宽度、高度（包括padding+内容）：元素.clientWidth/clientHeight,只读 无法修改</th>
+            <th>获取元素的占用宽度、高度（包括padding+内容+border）：offsetWidth/offsetHeight</th>
+            <th>获取最近的开启定位的祖先元素：offsetParent</th>
+            <th>获取相对于定位父元素的水平垂直偏移量：offsetLeft、offsetTop</th>
+            <th>1.scrollHeight/Height/Width 元素滚动区域(父元素中整个可滚动区域的高度)的高度 宽度 scrollLeft、Top：滚动条滚动距离,
+                可滚动区域高度-滚动条滚动长度=可见区域的高度时，滚动到底<em style="color: red;font-weight: bold;">应用：协议声明拖动到底部生效</em> <br>
+                2.页面滚动条时属于html的</th>
+            <th>滚动的动作：元素.onscroll=function(){}</th>
+
+        </tr>
+    </table>
+
+    <div class="class111">111.事件对象DOM EVENT<br>对象中鼠标移动的事件：元素.onmousemove 传入的实参即事件对象.clientX .clientY可以获得鼠标的坐标<br>
+        事件对象<em style="color: red;font-weight: bold;">每次事件相应函数触发时，会将事件对象作为实参传递给相应函数，这里面封装了所有事件的信息！！！</em></div>
+    <table>
+        <tr>
+            <th class="compatibility notforIE8" style="font-weight: bold; color: red;">event.clientX
+                IE8及以下不适用，在IE8中不会传入实参，会将事件对象作为window全局属性保存，可以使用window.event.clientX;此种方法chrom兼容 火狐不兼容<br>解决办法：<em
+                    style="font-size: 40px; color:blue;font-weight: bold;">event=event||window.event</em>
+
+            </th>
+        </tr>
+    </table>
+    <br>
+    <br>
+    <br>
+    <div class="class112">112.事件的冒泡：子节点的事件，父节点也会跟随触发相同事件，通过层级层层向上传递；可以通过子元素事件响应函数下面的event.cancelBubble=true来取消冒泡</div>
+    <div class="class113">113.事件的委派：解决子元素一个个绑定和新加的子元素绑定动作的重复性👉在祖先元素上绑定事件响应函数，在子元素上会触发，称为事件的委派。实质是利用了冒泡原理<br><em
+            style="font-weight: bold;color: brown;">利用event.target.className==XX提取点击触发对象，缩小祖先元素的有效区域。</em></div>
+    <div class="class114">114.事件的绑定：默认下，为同一个事件绑定响应函数只有最后一个生效，不能绑定多个响应函数。<br><em class="compatibility notforIE8"
+            style="font-weight: bold;color: rgb(216, 46, 46);">1.解决方法：元素.addEventListener(事件的字符串（去掉on如‘click’），回调函数，是否在捕获阶段触发事件（一般选<a id="addEventListener" href="#w3c">false</a>）)👉三个参数。将按照绑定顺序进行执行。<br>2.IE8不支持：可使用
+            元素.attachEvent（事件字符串需要带on，回调函数）解决，但是执行顺序与绑定顺序相反</em>
+        <br>3.addEventListener中的this指的是绑定对象，而.attachEvent中的this指的是window
+    </div>
+    <div class="class117">117.事件的传播</div>
+    <table><tr>
+        <th>微软：认为是由内而外的由当前元素传播至祖先事件👉冒泡</th>
+        <th>网景：认为由外向内即祖先元素向后代元素（当前元素）传播👉捕获</th>
+        <th><a id="w3c" href="#addEventListener">W3C：事件传播分为三个阶段：捕获阶段 目标阶段(默认从此阶段开始执行) 事件冒泡，如果希望在捕获阶段执行触发事件：可将addEventListener第三个参数设置为True，对于IE8没有考虑捕获阶段，直接以冒泡进行执行</a></th>
+    </tr></table>
+    <div class="class118 compatibility notforIE8">118.拖拽问腿：由于浏览器自带的拖拽搜索功能，可能会影响拖拽对象的效果，若要取消这种默认行为：通过在 对象元素.onmousedown响应函数内规定return false(IE8及以下不支持) 
+        <br><em style="color: red;font-weight: bold;">IE8:在响应函数下使用：拖拽对象.setCapyure() 进行拖拽行为劫持，然后再松开鼠标行为相应函数下触发劫持解除：对象.releaseCapture()。</em></div>
+    <div class="class119">121.滚轮事件（onwheel可以用）</div>
+    <table><tr>
+        <th  class="class118 compatibility notfor fire-fox">onmousewheel 使用event.wheelDelta获取滚动方向：上滚为正，下滚为负。但火狐不兼容，</th>
+        <th>火狐中使用DOMMouseScroll，且需要用addEventlistener中的DOMMouseScroll动作；使用event.detail来获取滚动方向：上滚为负，下滚为负</th>
+        <th>解决浏览器默认滚动条行为：将对象的滚动行为return false；<br> 火狐：使用addEventlistener取消行为，使用return false没有作用👉使用event.preventDefault()来取消默认行为
+        <br>IE8不支持:event.preventDefault()&&event.preventDefault()
+        </th>
+    </tr></table>
+    <div class="class120">120.键盘事件</div>
+     <table><tr>
+         <th>onkeydown:绑给可获得焦点光标的地方，或绑给document(直接是document 不是html)，长按会一直触发，第一次按下时会稍卡一下(可使用定时调用来解除)。使用event.keyCode获取按键编码
+         </th>
+         <th>onkeyup:</th>
+         <th>altKey ctrlkKey shiftKey可用event.altKey的布尔值来判断这三个辅助键是否被按下</th>
+         <th>使用return false取消显示输出内容、设置input的type可以设置为password密码输入模式</th>
+     </tr></table>
+<br><br><br><br><br>
+<div class="class124">124.浏览器对象模型</div>
+<table><tr>
+    <th>window</th>
+    <th>navigator</th>
+    <th>history</th>
+    <th>location</th>
+    <th>screen</th>
+</tr>
+<tr>
+    <td>默认的全局对象都是作为window对象属性保存的</td>
+    <td>浏览器的信息</td>
+    <td>历史记录信息，用于操作历史记录，由于隐私原因不可获取具体历史记录，只能操作浏览器向前向后访问并且只在当此访问时有效</td>
+    <td>地址栏信息、用于跳转 获取地址栏信息</td>
+    <td>用户的屏幕信息，显示器</td>
+</tr>
+<tr>
+    <td></td>
+    <td colspan="4">作为全局对象可以用window.XXX或XXX都可以</td>   
+</tr>
+<tr>
+    <td></td>
+    <td>1.获取产品信息：.appName 现在都叫Netscape了，无法帮助识别浏览器了。IE10及以下还不叫Netscape。<br>
+        2.userAgent还可以判断浏览器信息 Gecko代表渲染引擎，通过‘msie’识别可以辨别是否为IE浏览器，但在IE11中IE相关的信息已经不可识别。
+        <br> 可通过IE中特有的对象来辨别是否IE：比如window.ActiveXObject为true为IE,对IE11而言布尔值为false了，需要用ActiveXObject in window来判断 现在也不好用了</td>
+    <td>history:.length获取当次已经访问的链接数量，每次关闭后重新置零  .back()方法可以回退 forward()前进  go（n）向前跳转n个页面，负数就时向后跳转（即后退n次）</td>
+    <td>location：可以直接指定其值：绝对路径or相对路径。可以在事件相应函数中进行书写达到跳转目的，并且可以生成历史记录。location对象方法：assign(地址) 与location跳转地址一样。reload()用于刷新页面，在文本框的缓存可能不会刷掉Ctrl+F5或者reload(true)👉强制清空缓存刷新<br>
+    replace（路径）替换跳转并不会生成历史记录。不可回退</td>
+    <td></td>
+</tr></table>
+<div class="class127">127.window对象方法</div>
+<table>
+    <tr>
+        <th>1.setInterval:定时调用 是一段程序每间隔一段时间进行定时调用 timer=setInterval(function(){box.innerHTML=i++;},时间例如1000（默认单位ms）) 即etInterval(执行函数，时间)。 </th>
+        
+        <th><em style="font-weight: bold;color: tomato;">2.使用clearInterval(timer)可以关闭定时器,要写在定时调用的执行函数中,该方法可以接受任何参数，如果不是有效标识，就什么都不做</em><br>
+        3.对于多开启定时器产生了串扰问题，需要在开启前先进行关闭定时器操作。 </th>
+        <th>setTimeout(fun,时间)、隔一段时间在执行某事件，只会调用一次</th>
+        <th>clearTimeout（time）关闭延时调用</th>
+        <th>在定时操作结束阶段添加函数调用（callback（））达到连续动作的目的</th>
+        <th>将function函数封装至js文件中：在新建script内src指定文件名（放入函数代码段）即可<br>
+        对于内联样式设置会顶替外联样式的情况：可以在js中定义内联样式为''空字符，便不会进行覆盖</th>
+        
+    </tr>
+
+</table>
+<div class="class137">137.类的操作</div>
+<table>
+    <tr>
+        <th>1.通过style属性每修改一个样式，浏览器就要重新渲染一次<br>2.修改多个样式比较不方便<br>3.通过修改类名进行样式重绑定box.className='属性名'；能使表现与行为进行分离</th>
+        <th>若要保留原有的属性，并进行属性添加，通过box.className+=' 属性名'，属性名前面有个空格</th>
+        <th>若要删除，用空字符串来替换replace()</th>
+        <th>toggleClass（jquery），咩有就加，有就删除</th>
+    </tr>
+</table>
+<div class="class140">140.JSON(javascript object notation JS对象表示法)<br>用于前后台交互数据的一种数据类型
+</div>
+<table><tr>
+    <th>1.JSON文件编码：var obj='{"name":"孙悟空","age":18,"gender":男}'; 单引号内字符串就是json，可以被任意语言所识别，并能够转换为任意语言对象。</th>
+    <th>2.JSON对象中属性名必须加双引号，其他与JS语法一样</th>
+    <th>3.JSON数组：'[1,2,3,"hello"]'</th>
+    <th>4.JSON中允许的值：字符、数值、布尔、null、对象(普通,不能带有方法)、数组</th>
+    <th class="class118 compatibility notforIE7">5.使用JSON工具实现互相转换：JSON转换为对象：Json.parse(json);对象转换成json：JSON.stringify(对象) <em><br>
+    IE7及一下：eval()：var str2="alert('hello');";eval(str2);将会执行str2内代码<br>
+     eval()会将json中{}当作代码块，可以在json前后各加一个小括号,返回值就是转化成的对象：obj=eval("("+json+")"); 为安全考虑，通过引入外部json.js文件来解决</em></th>
+</tr></table>
+     
+    
+
+    </body>
+
+
+</html>
+<!-- opera：Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.93 Safari/537.36 OPR/76.0.4017.107
+Chrome：Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36
+Edge：Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.93 Safari/537.36 Edg/90.0.818.56
+伪IE：Mozilla/5.0 (Windows NT 6.2; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; InfoPath.3; Tablet PC 2.0; rv:11.0) like Gecko  opera：Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.93 Safari/537.36 OPR/76.0.4017.107 Chrome：Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36 Edge：Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.93 Safari/537.36 Edg/90.0.818.56 
+ -->

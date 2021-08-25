@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript">
+            //  var newfun=new fun('haha');
+        //  document.write(newfun.name)
+        function fun() {document.write(this.name)        
+    }
+    obj1={name:'sun',sayname:fun}
+    obj2={name:'shs',sayname:fun}
+    obj2.sayname()
+    function fun2(a,b){var obj=new Object();obj.name=a;obj.age=b;obj.sayname=fun;return obj;     
+    }    
+    var obj3=new fun2('猪八戒',18);
+    console.log(obj3);
+    obj3.sayname();
+    function creatperson(a,b){var obj={name:a,age:b,sayname:fun};return obj}
+    var person=new creatperson('猪八戒',15);
+    person.sayname();
+    console.log(typeof person);
+    function Person(name,age) {this.name=name;this.age=age
+    }
+    var xiaoming=new Person('王明',10)
+    console.log(xiaoming);
+    console.log(typeof xiaoming);
+    function Dog(){}
+    var wangwang=new Dog();
+    console.log(xiaoming  instanceof Dog);
+    var a='众所周知';
+    // function claim(){console.log(a+this.name+'是'+this.league+'最厉害的球员')}
+    
+    // function claim(){console.log('hahaha')}
+    function Footstar(){this.name=arguments[0];this.league=arguments[1];}
+    Footstar.prototype.claim=function (){console.log(a+this.name+'是'+this.league+'最厉害的球员')}
+    var footballplayer1=new Footstar('C罗','意甲');
+    console.log(footballplayer1);
+    footballplayer1.claim()
+    var footballplayer2=new Footstar('莱万','德甲');
+    footballplayer2.claim()
+    // function claim(){}
+    console.log('claim' in footballplayer2)
+    footballplayer1.claim.call(footballplayer2)
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

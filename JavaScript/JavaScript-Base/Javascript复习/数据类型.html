@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/all.min.css">
+    <title>JavaScript笔记</title>
+    <script type="text/javascript">
+        function fun() { }
+        fun()
+        console.log(fun)
+        console.log(typeof fun.prototype)
+    </script>
+    <style>
+        table,
+        td,
+        th,
+        tr {
+            border: 1px solid black;
+            border-collapse: collapse;
+            text-align: center;
+        }
+
+        td {
+            width: 160px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="class4">4.基本语法</div>
+    <table>
+        <tr>
+            <th>1.严格区分大小写</th>
+            <th>2.语句结束使用分号</th>
+            <th>3.空格换行浏览器自动忽略</th>
+        </tr>
+    </table>
+    <div class="class7">7.数据类型--14.数据类型转换</div>
+    <table>
+        <tr>
+            <th>String</th>
+            <th>Number</th>
+            <th>Boolean</th>
+            <th>Undefined</th>
+            <th>Null</th>
+            <th>Object</th>
+        </tr>
+        <tr>
+            <td>使用引号包起来，常见换行字符\n 制表字符\t,在网页中使用'&lt\br/&gt'符号表示换行、&nbsp表示空格</td>
+            <td>使用乘法运算非数值类型得到的NAN属于此类,常量Number.MAX_VALUE Number.MIN_VALUE</td>
+            <td>true false</td>
+            <td>Undefined表示未赋值的已声明变量,类型就是undefined</td>
+            <td>表示空对象，类型是object可用于赋值直接清空对象内存</td>
+            <td><a href="#">对象知识</a></td>
+        </tr>
+        <tr>
+            <td>1.使用toString()的方法转换为String，仅使用于Number类型<br>2.使用String(需转化对象)的函数，也适用于Null、undefined类型</td>
+            <td>1.字符串转number使用number(),空→0,非数→NaN;取有效数字使用parseInt()或parseFloat(),parse第二个参数可指定进制<br>2.布尔值依照逻辑进行转换<br>3.Null→0,underfined→NaN<br>4.16进制表示方法：0x...
+                八进制:0... 二进制：0b...,使用parseInt处理字符串数字时，需指定进制</td>
+            <td>使用Boolean()转换,非零数字字符串→true,null/undefined→false</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+    <div class="class15">15.运算符</div>
+    <table>
+        <tr>
+            <th>运算符及自增运算符</th>
+            <th>逻辑运算符</th>
+            <th>赋值运算符</th>
+            <th>关系运算符</th>
+            <th>相等运算符</th>
+            <th>条件运算符</th>
+        </tr>
+        <tr>
+            <td>1.+ - * / % ** Math.sqrt()→速度要远快于**
+                typeof<br>2.a++加完表达式为旧值,++a加完表达式为新值<br>3.数字加字符串为连接功能，可加空字符串实现String()功能，null undefined都适用</td>
+            <td>1.！非 用途：双重非实现boolean转化 <br>2.||或 true||表达式实现达到条件执行<br>3.&&与 false&&表达式实现达到条件执行</td>
+            <td>= += -= *= /= %=</td>
+            <td colspan="2">1.> >= &lt= == != ===包括类型全等 !==不全等<br>2.字符串与数字：先转换为字符串在比较<br>3.null与0不相等==
+                NaN不与任何值相等<br>4.undefined与null相等</td>
+            <td>条件表达式？语句1：语句2</td>
+        </tr>
+    </table>
+    <div class="class28">26--45代码语句</div>
+    <table>
+        <tr>
+            <th>条件判断语句</th>
+            <th>条件分支语句</th>
+            <th>while循环</th>
+            <th>for循环</th>
+            <th>break和continue</th>
+        </tr>
+        <tr>
+            <td>1.if(){} <br>2.if(){}else{}<br>3.if(){}else if(){} else{}</td>
+            <td>1.switch(XXX){case XX:语句；case XX：语句；case
+                XX：语句；default：语句；}该语句一旦成立，后面的执行语句不再进行判断而直接执行<br>2.若需跳出需要语句后加break</td>
+            <td>1.while(){}<br> 内部可加入条件判断跳出执行2.do{}while()会至少执行一次</td>
+            <td>1.for(var i=0;i&lt10;i++)<br>2.var for(;i&lt10;){i++}</td>
+            <td>continue:仅跳过当次循环 <br> break：终止最近的循环</td>
+        </tr>
+    </table>
+    <div class="class45">45.计时器</div>
+    <table>
+        <tr>
+            <th>console.time(计时器名)→</th>
+            <th>监控代码段👉</th>
+            <th>console.timeEnd(计时器名)</th>
+        </tr>
+    </table>
+    <div class="class46">对象简介</div>
+    <table>
+        <tr>
+            <th>内建对象</th>
+            <th>宿主对象</th>
+            <th>自定义对象</th>
+        </tr>
+        <tr>
+            <td>ES中定义的对象</td>
+            <td>浏览器运行环境提供的对象如document\console\window就是浏览器对象，而write log是他们的函数（无返回值）</td>
+            <td>开发人员创造的对象</td>
+        </tr>
+    </table>
+    <div class="class47">47--50.对象的基本操作</div>
+    <table>
+        <tr>
+            <th>对象的构建</th>
+            <th>属性及属性值</th>
+            <th>对象的内存分配</th>
+        </tr>
+        <tr>
+            <td>1.使用var obj={}来构建,在{}内属性与属性值使用：相连，以逗号分隔<br>2.使用var obj=new Object()来构建，用赋值法赋值属性</td>
+            <td>1.使用obj.XXX的方式来为XXX属性赋值<br>2.涉及特殊字符使用obj[XXX]方式来赋值<br>3.属性可以是任意数据类型包括对象<br> <a id='class57' href=""></a>
+                4.使用'XXX' in
+                obj检查是否存在属性,属性名要加引号</td>
+            <td>对象使用的内存区域为堆内存，基本数据类型使用的是栈内存，栈内存内存放着对象指向堆内存的地址，两个相等的对象表示他们指向的堆内存区域一致，值完全同享</td>
+        </tr>
+    </table>
+    <div class="class51">51--56函数</div>
+    <table>
+        <tr>
+            <th>函数的构造</th>
+            <th>函数的参数及返回值</th>
+            <th>立即执行函数</th>
+        </tr>
+        <tr>
+            <td>1.function fun([形参1，形参2，形参3]){执行语句}<br>2.var fun=function([形参1，形参2，形参3]){语句}<br>3.var fun=new
+                Function("document.write('这是一个函数');document.write('这是一个函数');")<br>4.参数中括号可去掉</td>
+            <td>1.参数可以是多种形式<br>2.返回值未定义则未undefined,return之后语句不再执行</td>
+            <td>（function fun([形参1，形参2，形参3]){执行语句}）（）</td>
+        </tr>
+    </table>
+    <div class="class57">57.方法:对象属性为函数的，称之为方法,写作<em style="font-weight: bold;color: red;">'对象.方法名=function(){}'</em>
+    </div>
+    <div class="class58">58--59作用域</div>
+    <table>
+        <tr>
+            <th>作用域</th>
+            <th>变量声明</th>
+            <th>函数作用域</th>
+        </tr>
+        <tr>
+            <td>JS代码全局作用域在页面打开时创造、关闭时销毁</td>
+            <td>1.在全局作用域中创建的对象都是window属性 可用window.变量名引用<br>2.使用var a=123，会预先声明a（与不适用var的区别），然后在运行代码的时候将值赋予a</td>
+            <td>1.函数作用域为独立的作用域，若要在函数中访问全局变量，可在前面加window.br<br>2.形参就是在函数中声明的变量</td>
+        </tr>
+    </table>
+    <div class="class61">THIS:this指函数<em style="font-weight: bold;">调用时</em>所在的上下文对象</div>
+    <table>
+        <tr>
+            <th>以函数形式进行调用时</th>
+            <th>以对象的方法形式进行调用时</th>
+            <th>以构造函数方式调用时</th>
+        </tr>
+        <tr>
+            <td>1.function fun(a,b){console.log(this)} fun(12,21)<br>this指window</td>
+            <td>以对象方法形式调用函数时,this指调用方法的对象,实现灵活的根据不同调用对象返回不同的结果</td>
+            <td>1.以构造函数方法进行调用时，this指新创建的对象<br>2.构造函数习惯上首字母大写<br>3.调用使用var XXX=new Person（）
+            </td>
+        </tr>
+    </table>
+    <div class="class64"><a href="./构造函数.html"> 64.构造函数-- <em style="font-weight: bold;">
+                使用同一构造函数创建的对象为同一类，创造的对象就是类实例</em>,所有创造的对象都是object的实例</a></div>
+    <table>
+        <tr>
+            <th>1.正常的函数书写方式，习惯上函数名大写开头，调用时使用new立即会<em style="font-weight: bold;color: red;">创建一新对象</em></em></th>
+            <th>2.将对象作为函数内的this</th>
+            <th>3.逐行执行代码、对this进行操作</th>
+            <th>4.将新建对象作为返回值返回</th>
+        </tr>
+        <tr>
+            <td colspan="2" style="font-weight: bold;">1.使用‘实例名instanceof 类名’来检查是否为此类</td>
+            <td colspan="2" style="font-weight: bold;">2.对于多类中重复的属性或方法，可以在外部全局域中定义并引用</td>
+        </tr>
+    </table>
+    <div class="class66">
+        66.原型对象(prototype)<br>1.对于构造函数外置方法函数的行为，首先会占用全局域的空间，其次会因为全局域中函数名的排他性而不安全、不易维护<br>2.在每个函数内部有一个属性prototype，对应的就是这个函数的原型对象
+    </div>
+    <table>
+        <tr>
+            <th> 原型对象：<br> 1.每一个函数中都有一个原型属性叫做prototype对应的就是原型对象，对于普通函数而言没有任何作用<br>2.对于用此函数创建的对象（var
+                new方式）,对象中也有一个属性叫做__proto__,他对应的也是这个原型对象<br>3.可以认为原型对象里对应了所有实例共有的属性或方法<br>4.在原型中定义对象的属性或方法有助于函数作用域的管理
+            </th>
+        </tr>
+        <tr>
+            <th style="font-weight: bold;color: red;">所有公共的属性方法都可以放到构造函数的原型对象中</th>
+        </tr>
+    </table>
+    <div class="class67">67.是否含有属性的确认<br><em style="font-weight: bold;color: red;"><a href="#class57">
+                使用in来检查,对于原型的对象也会返回true，</a>若要判断是否为自身含有的属性，需要使用<em
+                style="color: blue;">对象.hasOwnProperty('属性名')</em></em></div>
+    <div class="class70">70--78.数组</div>
+    <table>
+        <tr>
+            <th>数组的创建，用Array.isArray(xx)可判断xx是不是数组</th>
+            <th>数组的方法</th>
+            <th>数组的遍历</th>
+            <th>利用数组的forEach方法进行遍历</th>
+            <th>数组元素的提取与删除</th>
+            <th>其他数组的方法</th>
+        </tr>
+        <tr>
+            <td>创建：1.var arr=[];或2.var arr=new
+                Array();<br>2.编辑：数组[索引]=xx;<br>3.获取数组长度：数组.length,可以用赋值法对此进行设置<br>4.数组数据的向后添加：arr[arr.length]=XXX;<div>
+                </div>
+            </td>
+            <td>push：添加元素，可添加多个，返回值的是新长度<br>pop：删除最后一个元素，返回被删值<br>unshift：开头添加元素，返回新长度<br>shift：删除开头一个元素，返回被删值</td>
+            <td>for(var i=0;i&ltarr.length;i++{}</td>
+            <td class='compatibility notforIE8'>
+                数组.forEach(function(){}),function括号中可以使用三个形参名，分别会传入每次调用的数组的子元素、序列、数组，分五次调用，称为回调函数</td>
+            <td>1.提取片段slice：arr.slice(start,end(不包括))或arr.slice(start)或arr.slice(-X)
+                <br>2.片段删除：splice(start,数量)，影响原有数组，返回被删值<br>3.删除元素并相应位置替换splice(start,数量,替换1，替换2)
+            </td>
+            <td>1.concat连接 arrnew=arr1.concat(arr2) <br><a name=join href=""> 2</a>.join：将数组转化为字符串
+                array.join('')以引号内的内容作为分隔符进行连接<br>3.reverse()
+                直接反转原数组，不需要赋值<br> 4.sort():对数组按照unicode顺序进行排序（对于数字而言，会出现错误），直接改变原数组。需要在sort中添加回调函数进行以数值大小排序，函数语句return
+                a-b（a是每次调用的两个值的前一个，b是后一个），若return大于零，会交换位置(注意不同浏览器可能不一样！)
+            </td>
+        </tr>
+    </table>
+    <div class="class79">79--80函数对象的方法以及argument</div>
+    <table>
+        <tr>
+            <th>函数对象的方法call apply
+            </th>
+            <th>argument</th>
+        </tr>
+        <tr>
+            <td><i class="fas fa-star" style="color: red;"></i><i class="fas fa-star" style="color: red;"></i><i
+                    class="fas fa-star" style="color: red;"></i>1.call()和apply()与函数名()都一样在调用函数<br>2.不同的是用call
+                apply指括号中指定的第一个参数对象是作为函数执行中的this指向的对象（原来是指向全域的）<br>3.对于对象内的方法，通过方法名.call
+                apply括号内指定对象来改变方法中的this指向的对象<br>4.在括号中第二个元素之后还可以指定调用函数的参数（参考人工智能优化函数的调用方式）,call使用逗号区隔的方法
+                apply需要将实参封装成数组传递[2,3]</td>
+            <td>每次调用函数时，都会由浏览器传入隐含的参数：1.上下文对象this 2.封装<em style="font-weight:bold;color: red;">实参</em>
+                的类数组对象arguments,可以用argument.length读取传入实参长度。可以用argument[0],argument[1]来取代形参<br>函数中通过arguments.callee来返回当前执行的函数对象
+            </td>
+        </tr>
+    </table>
+    <div class="class81">81.Date对象</div>
+    <table>
+        <tr>
+            <th>定义：var d=new Date(),默认为代码执行时的时间,括号内可以"12/03/2016 11:10:30"形式定义</th>
+            <th>getDay:星期几<br>getDate：几号<br>getMonth：几月</th>
+            <th>getFullYear：几年 返回的四个字符年份</th>
+            <th>getTime 从1970年1月1日0时0m0s开始的毫秒数</th>
+            <th>time=Date.now()指当前执行时的时间戳</th>
+        </tr>
+    </table>
+    <div class="class82">81.Math对象</div>
+    <table>
+        <tr>
+            <th>定义：Math对象封装了一系列数学运算的属性方法</th>
+            <th>属性PI、E</th>
+            <th>方法：Math.abs(xx)绝对值 ceil(xx)向上取整 floor(xx)向下取整 round(xx)四舍五入 random()默认0--1的随机数 max（x,x,x）最大值 pow(x,y)幂运算
+            </th>
+            <th>getTime 从1970年1月1日0时0m0s开始的毫秒数</th>
+            <th>time=Date.now()指当前执行时的时间戳</th>
+        </tr>
+    </table>
+    <div class="class83">83.包装类，基本数据类型调用方法时会<em style="color: red; font-weight: bold;">临时</em>
+        使用包装类转换为对象然后调用该对象的属性与方法<br>1.String 将基本数据类型字符串转换为String对象<br> 2.Number
+        将基本数据类型数值转换为Number对象<br> 3.Boolean 将逻辑对象转换为Boolean对象<br>方法：用var a=new
+        Number(3)来转换，从而使基本对象具有对象属性方法等功能，但注意该种对象此时字面量相等并不代表对象相等，<em
+            style="color: red; font-weight: bold;">主要为系统使用该对象</em> </div>
+    <div class="class84">84.字符串的方法(系统默认将字符串包装成对象得以实现直接使用‘字符串.方法’的方式实现)</div>
+    <table>
+        <tr>
+            <th>字符对象是以字符<em style="color: red; font-weight: bold;">数组</em>的形式保存的，用length属性可以获取长度</th>
+            <th>charAt(n)返回第n个字符 与[n]一样<br>charCodeAt(n)获取第n个字符元素的Unicode编码<br>String.fromCharCode(72)Unicode编码转换为字符元素
+            </th>
+            <th>str.concat(xxx,xxx)连接多个字符串</th>
+            <th>indexOf('检索的字符',开始检索的索引(可选))返回第一次出现检索的字符的位置，没有会返回-1 <br>lastIndexOf 从后往前找</th>
+            <th>slice(index1,index2)截取片段<br>截取字符串substring()不支持负索引（当作0处理），会自动调整参数为为前小后大<br>截取字符串substr(开始，长度)</th>
+            <th>split(分隔符)以分隔符将字符串拆开为数组---<a href="#join">数组的join </a></th>
+            <th>toUpperCase()转为大写 toLowerCase()转为小写</th>
+        </tr>
+    </table>
+    <div class="class85">85--90正则表达式</div>
+    <table>
+        <tr>
+            <th>正则表达式的定义</th>
+            <th>使用字面量创建正则表达式&正则语法</th>
+            <th>字符串与正则表达式相关的方法</th>
+            <th>正则表达式其他语法</th>
+            <th>正则表达式其他语法</th>
+        </tr>
+        <tr>
+            <td>1.定义一套规则让计算机能够理解的规则表达式，他也是一个对象 <br>2.创建：var reg=new RegExp('正则表达式','匹配模式')，构造函数中正则表达式是一个字符串
+                <br>3.匹配模式需引号：i忽略大小写（不加将区分大小写），g全局匹配
+            </td>
+            <td>字面量创建：var reg=/a/i👈1.是否包含a：正则表达式：'a'(但是用构造函数创建方式比较灵活，可以对字符改动)<br>2.是否有a或b：/a|b/ or /[ab]/<br>3.是否有字母（小写
+                大写 所有）：/[a-z]/ /[A-Z]/ /[A-z]/(最后一个会包含一些非字母的元素) <br>4.前后固定，中间不一样：/a[bde]c/表示abc或adc或aec
+                <br>5.除了ab外有没有别的东西：/[^ab]/ <br>6.数字：/[0-9]/除了数字：/[^0-9]/
+            </td>
+            <td>1.测试是否符合正则规则：reg.test(str),返回布尔值<br>2.用正则式去拆数组：str.split(/[a-z]/)
+                <br>3.搜索是否有指定符合规则的内容：str.search(/[a-z]/),返回第一次出现的索引(使用全局匹配没用)，否则返回-1<br>4.str.match(正则式)提取符合表达式规则的内容，返回的是一个数组，使用全局匹配g
+                ig可连写//ig <br>5.replace(正则式，替换内容)将符合正则表达式的内容替换,也需指定全局匹配才可，返回的是一个字符串</td>
+            <td>1./a{3}/表示aaa的简写 <br>2./XXa{1-3}XX/表示1--3个a,/a{3,}/表示三个及以上a <br>3./XXb+XX/表示至少一个b <br>4./ab*c/表示b忽略<br>5./ab?c/表示b有0个或1个<br>6. /^a/表示开头紧跟a <br>7./a$/表示结尾是a <br>8.</td>
+            <td>1././表示的是任意字符，若要表示.这个符号，可写成/\./,在构造函数创建时写作"\\.",对于字符串中"\\"实际表示"\",reg字面写法为/\\/,而构造函数中写法为"\\\\" \两倍表示<br>2./\w/表示任意字母数字、下划线 /\W/表示除了w表示的<br>3./\d/表示任意数字，/\D/表示除了数字<br>4./\s/表示空格，/\S/除了空格<br>5./\b/表示单词边界 /\B/除了单词边界<br>6./^\s*/开头0个或多个空格，/\s*$/结尾0个或多个空格</td>
+        </tr>
+    </table>
+    <a href="">进入下一步DOM 文档对象模型</a>
+</body>
+
+</html>

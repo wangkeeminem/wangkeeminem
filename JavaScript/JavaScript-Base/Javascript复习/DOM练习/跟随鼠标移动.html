@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{position: absolute;}
+         #img{width: 80px;
+         height: 65px;
+         background-image: url(./soccer2.png);
+         background-size: contain;
+         position:absolute;
+         left:-80px;
+         top:-22px;
+         }
+         #haha{height: 3000px;
+         width: 3000px;
+         background-color: aquamarine;
+         }
+         #ban{
+             height: 200px;
+             width: 200px;
+             background-color: blue;
+             
+         }
+
+    </style>
+    <script type='text/javascript'>
+    window.onload=function(){
+    var img=document.getElementById("img");
+    var html=document.documentElement;
+    var body=document.body;
+    // alert(img.style.left)
+    html.onmousemove=function(event){
+        event=event||window.event;
+        img.style.left=(event.pageX-80)+'px';
+        img.style.top=(event.pageY-22)+'px';  
+        // console.log(event.target) 
+    }
+    html.onwheel=function(event){
+        event=event||window.event;
+        img.style.left=(event.pageX-80)+'px';
+        img.style.top=(event.pageY-22)+'px';   
+    }   
+    var haha=document.getElementById("haha");
+    var ban=document.getElementById("ban");
+    img.onmousemove=function(event){
+        event=event||window.event;
+        event.cancelBubble=true;        
+    }
+    ban.onmousemove=function(event){
+        event=event||window.event;
+        event.cancelBubble=true;        
+    }
+
+
+}
+    </script>
+</head>
+<body>
+    <div id="img" style="left:-80px;top:-22px;"></div>
+    <div id='haha'><div id="ban"></div></div>
+    
+</body>
+</html>

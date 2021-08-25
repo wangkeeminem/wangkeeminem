@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    *{margin: 0;
+    padding: 0;}
+
+    #box1{
+        width: 100px;
+        height: 100px;
+        background-color: red;
+        position: absolute;
+    }
+    #btn01{
+        
+        position: absolute;
+        top:150px;
+
+        left: 30px;
+    }
+    #btn02{
+        
+        position: absolute;
+        top:150px;
+    }
+    #btn03{
+        
+        position: absolute;
+        top:120px;
+        left: 18px;
+    }
+    #btn04{
+        
+        position: absolute;
+        top:180px;
+        left: 18px;
+    }
+</style>
+<script type="text/javascript" src="./function.js"></script>
+<script type="text/javascript">
+      window.onload=function(){
+        var box1=document.getElementById('box1');
+   var btn01=document.getElementById('btn01');
+   var btn02=document.getElementById('btn02');
+   var btn03=document.getElementById('btn03');
+   var btn04=document.getElementById('btn04');
+   
+       
+    //    function Buttons(offect,direction,text){this.offect=offect;this.direction=direction;this.text=text}
+    //    var 
+    //    btn01.onclick=function(){
+    //        if (i%2)
+    //        { btn01.innerHTML='停止';
+    //        clearInterval(timer)
+    //        timer=setInterval(function(){
+    //        box1.style.left=box1['offsetLeft']+10+'px';
+    //        },30);console.log(timer);}
+    //        else{
+    //         btn01.innerHTML='👉';
+    //          clearInterval(timer);            
+    //         console.log(timer);
+    //     }
+    //        i+=1;      
+    //         }
+
+
+
+
+
+        
+        mymove(btn01)
+        mymove(btn02)
+        mymove(btn03)
+        mymove(btn04)
+        
+
+
+      }
+
+
+</script>
+<body>
+    <div id="box1"></div>
+    <button id="btn01">👉</button>
+    <button id="btn02">👈</button>
+    <button id="btn03">👆</button>
+    <button id="btn04">👇</button>
+</body>
+</html>

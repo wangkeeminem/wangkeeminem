@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>正则表达式</title>
+    <script>
+        var reg=/[0-9]/g;
+        var str='a2b3c4d5e6f7g';
+        str2=str.match(reg);
+        console.log(str2)
+        str3=str.replace(reg,'haha');
+        console.log(str3)
+        str4=str.search(reg)
+        console.log(str4)
+        reg=/\./;
+        var str='aa';
+        console.log(reg.test(str))
+        var reg2=new RegExp("\.")
+        console.log(reg2.test(str))
+        var username='       wangk ke      wa     '
+        reg=/^\s*|\s*$/g
+        console.log(username.replace(reg,''))
+        reg=/\\/;
+        str='b\\a';
+        var reg2=new RegExp('\\\\');
+        console.log(str)
+        console.log(reg.test(str))
+        console.log(reg2.test(str))
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

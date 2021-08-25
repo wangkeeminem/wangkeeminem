@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>debounce</title>
+    <style>
+      #test{
+        width: 700px;
+        height: 100px;
+      }
+    </style>
+<script src="./debounce.js">
+</script>
+<script>
+  window.onload=()=>{
+    const testInput = document.querySelector('#test')
+    function inputFun(){
+      testInput.addEventListener('keydown',function(e){      
+      let flag = false
+      
+      clearTimeout(window.timer)
+      window.timer=setTimeout((e)=>{
+        flag = true
+        if(this.value.length>10)console.log(this.value)
+      },1000)
+    })
+    }
+    inputFun()
+
+  }
+
+    
+  
+ </script>
+</head>
+<body>
+  <input type="text" id="test">
+  <button id="button1">dddd </button>
+</body>
+<script>
+  let input1=document.getElementById('test')
+  console.log(input1.value);
+  let button1 = document.getElementById("button1")
+  button1.onclick=()=>{
+    console.log(input1.value);
+  }
+</script>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box{
+            height: 100px;
+            width: 100px;
+            background-color: teal;
+            position: absolute;
+            top: 200px;
+            left: 300px;
+        }
+    </style>
+    <script type='text/javascript'>
+     window.onload=function(){
+         var box=document.getElementById('box');
+          
+       function myboxmove(rate){
+        document.onkeydown=function(){
+        switch(event.keyCode){
+        case 37:box.style.left=box.offsetLeft-rate+'px';break
+        case 38:box.style.top=box.offsetTop-rate+'px';break
+        case 39:box.style.left=box.offsetLeft+rate+'px';break
+        case 40:box.style.top=box.offsetTop+rate+'px';break
+        } } 
+        
+        
+        
+        };
+         myboxmove(20)
+    //    console.log(history.length)
+    //     var btn=document.getElementsByTagName('button')[0];
+    //     btn.onclick=function(){
+    //      history.go(2)
+
+    //     }
+     }
+    </script>
+</head>
+<body>
+    <div id="box"></div>
+    <button>ddd</button>
+</body>
+</html>

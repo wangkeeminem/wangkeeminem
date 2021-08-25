@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    *{
+        padding: 0;
+        margin: 0;
+    }
+     .haha{width: 2000px;
+     height:200px;
+     padding: 200px;
+     background-color: blue;
+     }
+     body{
+        width: 500px;
+         overflow:scroll;}
+    </style>
+    <script type="text/javascript">
+     window.onload=function(){
+    var haha=document.getElementsByClassName('haha')[0];
+    var color=document.getElementsByClassName('color')[0];
+    var body=document.body;
+    var html=document.documentElement;
+    haha.onclick=function(){
+        // alert(getComputedStyle(haha).backgroundColor);
+        // alert(haha.currentStyle.backgroundColor)
+        alert(html.clientWidth)
+        alert(html.scrollWidth)
+        alert(html.scrollLeft)
+        
+    }
+    // body.onscroll=function(){alert('你在滚？')}
+
+
+
+     }
+    </script>
+</head>
+<body>
+    <div class='haha' style="background-color: blueviolet;"></div>
+    <button class='color'>什么颜色</button>
+
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+      .box1{
+          height: 100px;
+          width: 100px;
+          background-color: red;
+      }
+      .box2{
+        height: 200px;
+          width: 200px;
+          background-color: yellow;
+          
+      }
+
+      .box3{border: 2px solid blue;}
+
+    </style>
+    <script>
+        window.onload=function(){
+            var btn01=document.getElementById('btn01');
+            var box=document.getElementsByClassName('box1')[0];
+            btn01.onclick=function(){
+            box.className='box2';
+            }
+            var btn02=document.getElementById('btn02');
+            btn02.onclick=function(){
+            addclass(box,'box3')
+            }
+         function addclass(obj,cn){var reg=new RegExp('\\b'+cn+"\\b");if(!reg.test(obj.className)){obj.className+=" "+cn};console.log(reg)}
+
+        }
+
+
+    </script>
+</head>
+<body>
+    <button id='btn01'>更改属性</button>
+    <button id='btn02'>添加属性</button>
+    <div class="box1"></div>
+</body>
+</html>

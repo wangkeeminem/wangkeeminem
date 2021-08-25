@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON</title>
+    <script>
+
+        var json='{"name":"孙","age":18,"gender":"nan"}';
+        console.log(typeof json)
+        var obj=JSON.parse(json)
+        console.log(typeof obj)
+        console.log(obj.name)
+        var obj2={王:'姓',克:'名'}
+        console.log(obj2)
+        json2=JSON.stringify(obj2)
+        console.log(json2)
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

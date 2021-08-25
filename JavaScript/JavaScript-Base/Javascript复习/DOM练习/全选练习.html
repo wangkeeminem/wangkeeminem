@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>全选练习</title>
+    <style>
+        button{margin-right: 18px;}       
+    </style>
+    <script>
+          window.onload=function(){
+
+             function myclick(btnname,fun){
+                 var btn=document.getElementById(btnname);
+                 btn.onclick=fun;
+             }
+            //  实现全选/全不选按钮
+             myclick('input0',function(){
+                var btn=document.getElementById('input0'); 
+                var sports=document.getElementsByClassName('input');
+                for(var i=0;i<sports.length;i++){sports[i].checked=btn.checked;}
+            })
+
+            //自动补全选 input  这里用for循环比较好一点！用逆向，一旦有一个未选中，全选按钮为false然后跳出循环；否则设置为True
+            myclick('input1',function(){
+            var sports=document.getElementsByClassName('input');
+            sports[0].checked=sports[1].checked&&sports[2].checked&&sports[3].checked&&sports[4].checked;})
+            myclick('input2',function(){
+            var sports=document.getElementsByClassName('input');
+            sports[0].checked=sports[1].checked&&sports[2].checked&&sports[3].checked&&sports[4].checked;})
+            myclick('input3',function(){
+            var sports=document.getElementsByClassName('input');
+            sports[0].checked=sports[1].checked&&sports[2].checked&&sports[3].checked&&sports[4].checked;})
+            myclick('input4',function(){
+            var sports=document.getElementsByClassName('input');
+            sports[0].checked=sports[1].checked&&sports[2].checked&&sports[3].checked&&sports[4].checked;})
+
+            //  实现全选按钮 button 
+            
+            myclick('btn1',function(){
+                var sports=document.getElementsByClassName('input');    
+                if (sports[0].checked==1){for(var i=0;i<sports.length;i++){sports[i].checked=0;}}
+                else {for(var i=0;i<sports.length;i++){sports[i].checked=1;}}
+                
+            })
+            //  实现全不按钮 button
+            myclick('btn2',function(){
+                var sports=document.getElementsByClassName('input');                    
+                for(var i=0;i<sports.length;i++){sports[i].checked=false;}               
+            })
+            //  实现反选按钮 button
+            myclick('btn3',function(){
+                var sports=document.getElementsByClassName('input');                    
+                for(var i=1;i<sports.length;i++){sports[i].checked=!sports[i].checked;} 
+                sports[0].checked=sports[1].checked&&sports[2].checked&&sports[3].checked&&sports[4].checked;              
+            })
+            //  实现提交按钮 button
+            myclick('btn4',function(){
+                var sports=document.getElementsByClassName('input');  
+                var choices=[];                  
+                for(var i=1;i<sports.length;i++){sports[i].checked&&choices.push(sports[i].nextSibling.nodeValue);} 
+                confirm('您已选择了'+choices+'运动项目')
+                
+            })
+          }
+
+    </script>
+</head>
+
+<body>
+    <div>你爱好的运动是？<input class='input' id='input0' type="checkbox" value='hahahah'>全选/全不选</div>
+    <div><input class='input' id='input1' type="checkbox">足球<input class='input' id='input2' type="checkbox">篮球<input class='input' id='input3'
+            type="checkbox">羽毛球<input class='input' id='input4' type="checkbox">乒乓球</div>
+    <button id='btn1'>全选</button><button id='btn2'>全不选</button><button id='btn3'>反选</button><button id='btn4'>提交</button>
+</body>
+
+</html>

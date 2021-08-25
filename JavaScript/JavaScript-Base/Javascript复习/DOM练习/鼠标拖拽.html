@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>鼠标拖拽</title>
+    <style>
+        #box1 {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            position: absolute;
+        }
+        #box2 {
+            width: 100px;
+            height: 100px;
+            background-color: yellow;
+            position:  absolute;
+            left: 500px;
+            top:500px
+        }
+    </style>
+    <script type="text/javascript">
+        window.onload = function () {
+            var box1 = document.getElementById('box1');
+            document = document.documentElement
+            // box1.addEventListener('mousedown',function(){mouseXstart=event.pageX;mouseYstart=event.pageY;console.log(mouseXstart)},false)
+            // box1.addEventListener('mousemove',function(){box1.style.left=event.pageX-mouseXstart+'px';box1.style.top=event.pageY-mouseYstart+'px';},false)
+    
+            // box1.onmousedown = function () {
+            //     var mouseXstart = event.clientX-(parseInt(box1.style.left)||0); var mouseYstart = event.clientY-(parseInt(box1.style.top)||0); console.log(box1.style.left);
+            //     document.onmousemove = function () { box1.style.left =(event.clientX - mouseXstart) + 'px'; box1.style.top= (event.clientY - mouseYstart) + 'px';};
+            // document.onmouseup = function () { console.log(box1.style.left); document.onmousemove = null;document.onmouseup=null; };  
+            // return false;
+            // }
+            var box = document.getElementById('box2');
+            function Mymousemove(item){
+                var box=document.getElementById(item);
+                box.onmousedown = function () {   
+                var mouseXstart = event.clientX-(parseInt(box.style.left)||box.offsetLeft); var mouseYstart = event.clientY-(parseInt(box.style.top)||box.offsetTop);console.log(box.offsetLeft);
+                document.onmousemove = function () {box.style.left =(event.clientX - mouseXstart) + 'px'; box.style.top= (event.clientY - mouseYstart) + 'px';};
+            document.onmouseup = function () { console.log(box.style.left); document.onmousemove = null;document.onmouseup=null; };  
+            return false;}}
+            Mymousemove('box2')
+            Mymousemove('box1')
+            
+                        
+        }
+    </script>
+</head>
+
+<body>
+    <div id='box1' style="position: relative;"></div>
+    <div id='box2' style="position: relative;"></div>
+
+</body>
+
+</html>

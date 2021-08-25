@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            margin: 0 auto;}
+        #box1{width: 200px;
+        height: 300px;        
+        border: solid 1px black;
+        overflow: scroll;}
+        #box2{
+            /* display: table; */
+            width: 180px;
+        height: 700px;        
+        border: solid 1px black;
+        word-break:break-all  }
+        .col2{width: 220px;
+        margin-top: 20px;}
+          
+    </style>
+    <script type="text/javascript">
+    window.onload=function(){
+    var box1=document.getElementById('box1');
+    var box2=document.getElementById('box2');
+    var input=document.getElementsByClassName('input')[0];
+    var confirmbtn=document.getElementsByClassName('confirmbtn')[0];
+    confirmbtn.onclick=function(){alert('欢迎')};
+    input.onclick=function(){
+        if (this.checked==true){confirmbtn.disabled=false}
+        else{confirmbtn.disabled=true}
+    };
+    box1.onscroll=function(a,b){
+        if (this.scrollTop>=this.scrollHeight-this.clientHeight)
+        {input.disabled=false;input.parentElement.style.color='black';}
+        else{input.disabled=true;input.parentElement.style.color='gray';}
+        console.log(a)
+        console.log(b)
+        }
+
+}
+    
+    </script>
+</head>
+<body>
+    <div id="box1"><div id="box2">?
+        时代的潮汐与历史的回声
+        ——“共和国长篇小说经典丛书”总序冯牧　缪俊杰
+        　　今年是中国人民抗日战争暨世界人民反法西斯战争胜利五十周年，我国人民将隆重纪念这一具有重大历史意义的日子。为了配合这次盛大的纪念活动，进一步弘扬爱国主义和国际主义精神，激励人民把我国建设成为有中国特色的社会主义强国，并检阅新中国文学创作的历史性成就，花山文艺出版社将重新出版一批以反映中国人民革命斗争（包括反映抗日战争）、经过较长时间考验、深得广大读者喜爱的杰出的长篇小说，定名为“共和国长篇小说经典丛书”。我们对花山文艺出版社的这个非常有意义的重大举措表示祝贺和敬意。
+        　　优秀的文学作品有时被称为反映社会生活的百科全书。</div></div>
+    <div class='col2' style="color: gray;"><input disabled class='input' type="checkbox">已经阅读以上条文
+    <button class='confirmbtn' disabled>我同意</button></div>
+    
+    <div class="scrolltop"></div>
+    
+</body>
+</html>
